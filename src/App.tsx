@@ -1,48 +1,66 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Send, 
-  CheckCircle, 
-  MessageSquareText, 
-  Download, 
-  ExternalLink,
-  Github,
-  Award,
-  ArrowUpRight,
-  Zap,
-  Cpu,
-  Globe,
-  Layers,
-  Mail,
-  MapPin,
-  ChevronDown
+import { motion, AnimatePresence, useInView } from 'motion/react';
+import {
+  Send, CheckCircle, MessageSquareText, Download,
+  ExternalLink, Github, Award, ArrowUpRight,
+  Zap, Cpu, Globe, Layers, Mail, MapPin, X,
+  Star, BookOpen, Code2, Sparkles, ChevronRight,
 } from 'lucide-react';
-
-import { PROJECTS, TIMELINE, SKILL_CATEGORIES, Project } from './data';
+import { PROJECTS, TIMELINE, SKILL_CATEGORIES, CERTIFICATIONS, ACHIEVEMENTS, Project } from './data';
 import CaseStudyModal from './components/CaseStudyModal';
 import ResumeViewer from './components/ResumeViewer';
 import MlPlayground from './components/MlPlayground';
 
 interface Message {
-  name: string;
-  email: string;
-  company: string;
-  message: string;
-  timestamp: string;
+  name: string; email: string; company: string;
+  message: string; timestamp: string;
 }
 
-// Hero stats data
-const HERO_STATS = [
-  { label: 'Projects Shipped', value: '12+', icon: Zap },
-  { label: 'ML Models Deployed', value: '6', icon: Cpu },
-  { label: 'CGPA', value: '8.83', icon: Award },
-  { label: 'Tech Stack', value: '25+', icon: Layers },
+const STATS = [
+  { label: 'Projects Shipped', value: '12+', icon: Zap, color: '#6c47ff' },
+  { label: 'ML Models', value: '6', icon: Cpu, color: '#a855f7' },
+  { label: 'CGPA', value: '8.83', icon: Award, color: '#06b6d4' },
+  { label: 'Technologies', value: '25+', icon: Layers, color: '#f59e0b' },
 ];
+
+const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'Graph Theorist.', 'Open Source Builder.'];
+
+// Animated number counter
+function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const steps = 40;
+    const dur = 1200;
+    const inc = target / steps;
+    const t = setInterval(() => {
+      start += inc;
+      if (start >= target) { setCount(target); clearInterval(t); }
+      else setCount(Math.floor(start));
+    }, dur / steps);
+    return () => clearInterval(t);
+  }, [inView, target]);
+
+  return <span ref={ref}>{target < 1 ? target.toFixed(2) : count}{suffix}</span>;
+}
+
+// Stagger container variants
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show:   { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 280, damping: 24 } },
+};
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
@@ -50,440 +68,378 @@ export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const [showInquiries, setShowInquiries] = useState(false);
-
   const [highlightedTech, setHighlightedTech] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>('all');
-
-  // Scroll-spy for nav
-  const [activeSection, setActiveSection] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [activeSection, setActiveSection] = useState('');
   const [navScrolled, setNavScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Typewriter state
-  const [typewriterText, setTypewriterText] = useState('');
-  const [typewriterIndex, setTypewriterIndex] = useState(0);
-  const typewriterPhrases = [
-    'ML Engineer.',
-    'Full-Stack Dev.',
-    'AI Researcher.',
-    'VIT Chennai \'27.',
-  ];
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+  // Typewriter
+  const [typed, setTyped] = useState('');
+  const [phraseIdx, setPhraseIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
 
-  // Refs for section reveal
-  const sectionsRef = useRef<NodeListOf<Element> | null>(null);
-
-  // Load existing inquiries from local storage
   useEffect(() => {
     const stored = localStorage.getItem('anshuman_inquiries');
     if (stored) {
-      try {
-        setMessages(JSON.parse(stored));
-      } catch (e) {
-        console.error(e);
-      }
+      try { setMessages(JSON.parse(stored)); }
+      catch { /* ignore */ }
     } else {
-      const seedMessages: Message[] = [
-        {
-          name: 'Sarah Jenkins',
-          email: 'sarah@helix-solutions.io',
-          company: 'Helix Solutions',
-          message: 'Excellent portfolio! Your CarePredictAI system could really benefit our clinical analytics pipeline. Let\'s set up a call to discuss collaboration opportunities.',
-          timestamp: 'June 26, 2026, 10:42 AM'
-        },
-        {
-          name: 'Professor David K.',
-          email: 'd.kaufman@vit.edu',
-          company: 'AI Research Lab',
-          message: 'Your research on CascadeIQ using Temporal Graph Networks looks very promising. Keep me updated on the IEEE Access paper status.',
-          timestamp: 'June 28, 2026, 2:15 PM'
-        }
+      const seed: Message[] = [
+        { name: 'Sarah Jenkins', email: 'sarah@helix.io', company: 'Helix Solutions', message: "Your CarePredictAI system looks incredible. Let's set up a call!", timestamp: 'Jun 26, 2026, 10:42 AM' },
+        { name: 'Prof. David K.', email: 'd.k@vit.edu', company: 'AI Research Lab', message: 'The CascadeIQ TGN research is fascinating. Keep me posted on the IEEE submission.', timestamp: 'Jun 28, 2026, 2:15 PM' },
       ];
-      localStorage.setItem('anshuman_inquiries', JSON.stringify(seedMessages));
-      setMessages(seedMessages);
+      localStorage.setItem('anshuman_inquiries', JSON.stringify(seed));
+      setMessages(seed);
     }
   }, []);
 
   // Typewriter effect
   useEffect(() => {
-    const currentPhrase = typewriterPhrases[phraseIndex];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!isDeleting) {
-      if (typewriterIndex < currentPhrase.length) {
-        timeout = setTimeout(() => {
-          setTypewriterText(currentPhrase.slice(0, typewriterIndex + 1));
-          setTypewriterIndex(i => i + 1);
-        }, 80);
+    const phrase = PHRASES[phraseIdx];
+    let t: ReturnType<typeof setTimeout>;
+    if (!deleting) {
+      if (charIdx < phrase.length) {
+        t = setTimeout(() => { setTyped(phrase.slice(0, charIdx + 1)); setCharIdx(i => i + 1); }, 75);
       } else {
-        timeout = setTimeout(() => setIsDeleting(true), 2000);
+        t = setTimeout(() => setDeleting(true), 2200);
       }
     } else {
-      if (typewriterIndex > 0) {
-        timeout = setTimeout(() => {
-          setTypewriterText(currentPhrase.slice(0, typewriterIndex - 1));
-          setTypewriterIndex(i => i - 1);
-        }, 45);
+      if (charIdx > 0) {
+        t = setTimeout(() => { setTyped(phrase.slice(0, charIdx - 1)); setCharIdx(i => i - 1); }, 40);
       } else {
-        setIsDeleting(false);
-        setPhraseIndex(i => (i + 1) % typewriterPhrases.length);
+        setDeleting(false);
+        setPhraseIdx(i => (i + 1) % PHRASES.length);
       }
     }
+    return () => clearTimeout(t);
+  }, [typed, charIdx, deleting, phraseIdx]);
 
-    return () => clearTimeout(timeout);
-  }, [typewriterIndex, isDeleting, phraseIndex]);
-
-  // Scroll-spy & nav scroll effect
+  // Scroll spy
   useEffect(() => {
-    const handleScroll = () => {
-      setNavScrolled(window.scrollY > 30);
-      const sections = ['work', 'lab', 'contact'];
-      for (const id of sections) {
+    const onScroll = () => {
+      setNavScrolled(window.scrollY > 40);
+      ['work', 'lab', 'about', 'contact'].forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 120 && rect.bottom >= 120) {
-            setActiveSection(id);
-            return;
-          }
+          const { top, bottom } = el.getBoundingClientRect();
+          if (top <= 100 && bottom >= 100) setActiveSection(id);
         }
-      }
-      setActiveSection('');
+      });
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Section reveal on scroll
+  // Intersection reveal
   useEffect(() => {
-    const reveals = document.querySelectorAll('.section-reveal');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.08 }
     );
-    reveals.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 
-  const handleSendMessage = (e: FormEvent) => {
+  const handleSend = (e: FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) return;
-
-    const newMessage: Message = {
-      name,
-      email,
-      company: company || 'Independent Researcher',
-      message,
-      timestamp: new Date().toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true
-      })
+    const msg: Message = {
+      name, email, company: company || 'Independent',
+      message, timestamp: new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }),
     };
-
-    const updated = [newMessage, ...messages];
+    const updated = [msg, ...messages];
     setMessages(updated);
     localStorage.setItem('anshuman_inquiries', JSON.stringify(updated));
-    setName('');
-    setEmail('');
-    setCompany('');
-    setMessage('');
+    setName(''); setEmail(''); setCompany(''); setMessage('');
     setIsSubmitSuccess(true);
-    setTimeout(() => setIsSubmitSuccess(false), 4000);
+    setTimeout(() => setIsSubmitSuccess(false), 4500);
   };
 
-  const filteredProjects = PROJECTS.filter((proj) => {
-    if (!selectedCategory || selectedCategory === 'all') return true;
-    return proj.category === selectedCategory;
-  });
+  const filtered = PROJECTS.filter(p => selectedCategory === 'all' || p.category === selectedCategory);
 
-  const categoryIcon = (id: string) => {
-    if (id === 'ml') return <Cpu className="w-3 h-3" />;
-    if (id === 'fullstack') return <Globe className="w-3 h-3" />;
-    if (id === 'devops') return <Layers className="w-3 h-3" />;
-    return null;
+  const catCounts = {
+    all: PROJECTS.length,
+    ml: PROJECTS.filter(p => p.category === 'ml').length,
+    fullstack: PROJECTS.filter(p => p.category === 'fullstack').length,
+    devops: PROJECTS.filter(p => p.category === 'devops').length,
+  };
+
+  const statusBadge = (s: string) => {
+    if (s === 'live') return <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 uppercase tracking-wider">Live</span>;
+    if (s === 'research') return <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-violet-100 text-violet-700 border border-violet-200 uppercase tracking-wider">Research</span>;
+    return <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 uppercase tracking-wider">Open Source</span>;
   };
 
   return (
     <div className="font-sans min-h-screen bg-white text-on-surface antialiased flex flex-col">
-      {/* Animated accent top line */}
-      <div className="w-full h-[3px] accent-line flex-shrink-0" />
+      {/* Top accent */}
+      <div className="h-[3px] accent-line flex-shrink-0 w-full" />
 
-      {/* ===== HEADER ===== */}
-      <header
-        className={`sticky top-0 w-full z-40 transition-all duration-300 ${
-          navScrolled
-            ? 'bg-white/90 backdrop-blur-lg shadow-sm border-b border-surface-container'
-            : 'bg-white/60 backdrop-blur-md border-b border-surface-container/50'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center h-18 py-4">
-          {/* Brand */}
-          <div className="flex items-center gap-2.5 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
-              <span className="font-mono text-white text-xs font-bold">AM</span>
+      {/* ═══ NAV ═══ */}
+      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navScrolled ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-surface-container' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-5 md:px-10 flex justify-between items-center h-16">
+          {/* Logo */}
+          <motion.button
+            whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex items-center gap-2.5"
+          >
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-md shadow-primary/20">
+              <span className="font-display text-white text-[11px] font-bold">AM</span>
             </div>
-            <span className="font-serif text-xl tracking-tight font-medium">Anshuman</span>
-          </div>
+            <span className="font-display font-semibold text-on-surface text-[15px] tracking-tight">Anshuman</span>
+          </motion.button>
 
-          {/* Nav */}
-          <nav className="hidden sm:flex items-center gap-8">
-            {[
-              { label: 'Selected Work', href: '#work', id: 'work' },
-              { label: 'AI Lab', href: '#lab', id: 'lab' },
-              { label: 'Contact', href: '#contact', id: 'contact' },
-            ].map(link => (
-              <a
-                key={link.id}
-                href={link.href}
-                className={`font-mono text-[11px] tracking-widest uppercase font-semibold transition-all duration-200 pb-0.5 ${
-                  activeSection === link.id
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-secondary hover:text-primary'
-                }`}
-              >
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-6">
+            {[{ label: 'Work', id: 'work' }, { label: 'AI Lab', id: 'lab' }, { label: 'About', id: 'about' }, { label: 'Contact', id: 'contact' }].map(link => (
+              <a key={link.id} href={`#${link.id}`}
+                className={`font-display text-xs font-medium tracking-wide transition-all duration-200 ${activeSection === link.id ? 'text-primary' : 'text-secondary hover:text-on-surface'}`}>
                 {link.label}
               </a>
             ))}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
               onClick={() => setIsResumeOpen(true)}
-              className="btn-primary-glow inline-flex items-center gap-1.5 bg-primary text-white px-4 py-2 rounded-lg text-[11px] font-mono font-semibold"
+              className="btn-glow flex items-center gap-1.5 bg-primary text-white px-4 py-2 rounded-lg font-display text-xs font-semibold"
               id="nav-resume-btn"
             >
-              <Download className="w-3 h-3" /> Resume
-            </button>
+              <Download className="w-3.5 h-3.5" /> Resume
+            </motion.button>
           </nav>
+
+          {/* Mobile hamburger */}
+          <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+            <div className={`w-5 h-0.5 bg-on-surface transition-all mb-1 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+            <div className={`w-5 h-0.5 bg-on-surface transition-all mb-1 ${menuOpen ? 'opacity-0' : ''}`} />
+            <div className={`w-5 h-0.5 bg-on-surface transition-all ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+          </button>
         </div>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+              className="md:hidden bg-white border-b border-surface-container px-5 pb-4 flex flex-col gap-3">
+              {[{ label: 'Work', id: 'work' }, { label: 'AI Lab', id: 'lab' }, { label: 'About', id: 'about' }, { label: 'Contact', id: 'contact' }].map(l => (
+                <a key={l.id} href={`#${l.id}`} onClick={() => setMenuOpen(false)}
+                  className="font-display text-sm text-on-surface font-medium py-1.5 border-b border-surface-container last:border-0">{l.label}</a>
+              ))}
+              <button onClick={() => { setIsResumeOpen(true); setMenuOpen(false); }}
+                className="btn-glow bg-primary text-white py-2.5 rounded-lg font-display text-sm font-semibold">
+                Download Resume
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
-      {/* ===== MAIN ===== */}
-      <main className="max-w-7xl mx-auto px-6 md:px-12 flex-1 w-full">
+      <main className="max-w-7xl mx-auto px-5 md:px-10 flex-1 w-full">
 
-        {/* ── SECTION 1: HERO ── */}
-        <section className="hero-mesh py-20 md:py-32 flex flex-col md:flex-row md:items-center md:justify-between gap-12 editorial-divider relative overflow-hidden">
-          
-          {/* Decorative background blobs */}
-          <div className="absolute top-10 right-10 w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 w-48 h-48 rounded-full bg-violet-500/5 blur-3xl pointer-events-none" />
+        {/* ═══ HERO ═══ */}
+        <section className="hero-mesh py-20 md:py-36 flex flex-col md:flex-row md:items-center md:justify-between gap-14 divider relative overflow-hidden">
+          {/* Decorative blobs */}
+          <div className="pointer-events-none absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-primary/10 to-accent/5 blur-3xl" />
+          <div className="pointer-events-none absolute bottom-0 left-1/3 w-64 h-64 rounded-full bg-purple-400/5 blur-3xl" />
 
-          <div className="flex flex-col gap-6 max-w-2xl relative z-10">
-            {/* Status badge */}
-            <div className="animate-fade-slide-up inline-flex items-center gap-2 w-fit px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-medium">
+          <div className="flex flex-col gap-7 max-w-2xl relative z-10">
+            {/* Status pill */}
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+              className="w-fit flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-medium">
               <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500 inline-block" />
               Open to Opportunities · Internships & Full-time
-            </div>
+            </motion.div>
 
-            <div className="animate-fade-slide-up delay-100">
-              <h1 className="font-serif text-5xl md:text-7xl text-on-surface mb-3 font-normal leading-tight">
-                <span className="italic">Anshuman</span>
-                <br />
-                <span className="gradient-text font-normal not-italic text-4xl md:text-5xl">Mishra</span>
+            {/* Name */}
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}>
+              <h1 className="font-display font-bold text-5xl md:text-[72px] leading-[1.05] tracking-tight text-on-surface mb-1">
+                Anshuman<br />
+                <span className="gradient-text">Mishra.</span>
               </h1>
-              <div className="flex items-center gap-2 mt-3">
-                <span className="font-mono text-base md:text-lg text-secondary font-normal">
-                  {typewriterText}
-                </span>
-                <span className="inline-block w-0.5 h-5 bg-primary animate-[typewriterBlink_1s_ease-in-out_infinite]" />
-              </div>
-            </div>
+            </motion.div>
 
-            <p className="animate-fade-slide-up delay-200 font-sans text-base text-on-surface-variant leading-relaxed max-w-xl">
-              I build AI-powered products end to end — from training the model to shipping the API to designing the interface. Currently building post-engagement prediction algorithms at <strong className="text-on-surface font-semibold">Deuglo</strong> and researching virality forecasting using <strong className="text-on-surface font-semibold">Temporal Graph Networks</strong>.
-            </p>
+            {/* Typewriter */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
+              className="flex items-center gap-2 h-7">
+              <span className="font-display text-xl md:text-2xl text-secondary font-normal">{typed}</span>
+              <span className="cursor-blink inline-block w-[2px] h-6 bg-primary" />
+            </motion.div>
+
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
+              className="font-sans text-base md:text-[17px] text-on-surface-variant leading-relaxed max-w-xl">
+              I build <strong className="text-on-surface font-semibold">AI-powered products</strong> end to end — from training deep learning models to shipping production APIs to designing pixel-perfect interfaces. Currently building prediction engines at{' '}
+              <strong className="text-on-surface font-semibold">Deuglo</strong> and researching virality forecasting with{' '}
+              <strong className="text-on-surface font-semibold">Temporal Graph Networks</strong>.
+            </motion.p>
 
             {/* CTAs */}
-            <div className="animate-fade-slide-up delay-300 flex flex-wrap items-center gap-3 mt-2">
-              <a
-                href="#work"
-                className="btn-primary-glow inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-lg text-xs font-mono font-semibold gap-2"
-                id="hero-view-work-btn"
-              >
-                View Selected Work <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <button
-                onClick={() => setIsResumeOpen(true)}
-                className="inline-flex items-center justify-center border border-on-surface/20 text-on-surface bg-white px-6 py-3 rounded-lg text-xs font-mono font-medium gap-2 transition-all hover:border-primary hover:text-primary hover:-translate-y-0.5 active:translate-y-0"
-                id="hero-resume-btn"
-              >
-                Download Resume <Download className="w-3.5 h-3.5 text-primary" />
-              </button>
-            </div>
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}
+              className="flex flex-wrap gap-3 mt-1">
+              <motion.a href="#work" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}
+                className="btn-glow inline-flex items-center gap-2 bg-primary text-white px-6 py-3.5 rounded-xl font-display font-semibold text-sm"
+                id="hero-work-btn">
+                View My Work <ArrowUpRight className="w-4 h-4" />
+              </motion.a>
+              <motion.button onClick={() => setIsResumeOpen(true)} whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 border border-on-surface/15 text-on-surface bg-white px-6 py-3.5 rounded-xl font-display font-semibold text-sm transition-all hover:border-primary/50 hover:text-primary"
+                id="hero-resume-btn">
+                <Download className="w-4 h-4 text-primary" /> Resume
+              </motion.button>
+            </motion.div>
 
-            {/* Social quick links */}
-            <div className="animate-fade-slide-up delay-400 flex items-center gap-4 text-xs font-mono text-secondary">
-              <a href="https://github.com/anshumanvatsa" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+            {/* Social links */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}
+              className="flex items-center gap-5 font-mono text-xs text-secondary">
+              <a href="https://github.com/anshumanvatsa" target="_blank" rel="noreferrer"
+                className="flex items-center gap-1.5 hover:text-primary transition-colors">
                 <Github className="w-3.5 h-3.5" /> @anshumanvatsa
               </a>
-              <span className="text-surface-dim">·</span>
+              <span>·</span>
               <a href="mailto:atulvatsamishra@gmail.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                 <Mail className="w-3.5 h-3.5" /> Email
               </a>
-              <span className="text-surface-dim">·</span>
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5" /> Chennai, India
-              </span>
-            </div>
+              <span>·</span>
+              <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> Chennai, IN</span>
+            </motion.div>
           </div>
 
           {/* Avatar */}
-          <div className="hidden md:flex flex-col items-center gap-6 relative z-10">
-            <div className="float-anim w-40 h-40 rounded-full bg-gradient-to-br from-[#1c1b1b] to-[#2d2b2b] border-2 border-primary flex items-center justify-center select-none shadow-2xl relative">
-              <span className="font-serif text-5xl text-white tracking-widest font-normal ml-1">AM</span>
-              {/* Ring */}
-              <div className="absolute inset-0 rounded-full border-2 border-primary/30 scale-110" />
-              <div className="absolute inset-0 rounded-full border border-primary/15 scale-125" />
+          <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, type: 'spring', stiffness: 150 }}
+            className="hidden md:flex items-center justify-center relative">
+            <div className="float-anim relative">
+              <div className="glow-ring w-44 h-44 rounded-full bg-gradient-to-br from-[#0f0e17] to-[#1e1b30] border border-primary/40 flex items-center justify-center shadow-2xl shadow-primary/20">
+                <span className="font-display font-bold text-6xl text-white tracking-wider">AM</span>
+              </div>
+              {/* Orbit rings */}
+              <svg className="absolute inset-0 w-full h-full orbit-1" viewBox="0 0 176 176">
+                <ellipse cx="88" cy="88" rx="82" ry="42" fill="none" stroke="rgba(108,71,255,0.2)" strokeWidth="1.5" strokeDasharray="6 4" />
+              </svg>
+              <svg className="absolute inset-0 w-full h-full orbit-2" viewBox="0 0 176 176">
+                <ellipse cx="88" cy="88" rx="72" ry="32" fill="none" stroke="rgba(168,85,247,0.15)" strokeWidth="1" transform="rotate(45 88 88)" />
+              </svg>
             </div>
-          </div>
+          </motion.div>
         </section>
 
-        {/* ── HERO STATS BAR ── */}
-        <section className="py-8 editorial-divider">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {HERO_STATS.map((stat, i) => {
+        {/* ═══ STATS BAR ═══ */}
+        <section className="py-8 divider">
+          <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {STATS.map((stat) => {
               const Icon = stat.icon;
               return (
-                <div
-                  key={stat.label}
-                  className={`section-reveal flex flex-col items-center md:items-start gap-1 p-4 rounded-xl border border-surface-container hover:border-primary/30 transition-all card-lift bg-white`}
-                  style={{ animationDelay: `${i * 0.1}s` }}
-                >
-                  <div className="flex items-center gap-2 text-secondary mb-1">
-                    <Icon className="w-3.5 h-3.5" />
-                    <span className="font-mono text-[10px] uppercase tracking-widest">{stat.label}</span>
+                <motion.div key={stat.label} variants={item}
+                  className="lift flex flex-col gap-1.5 p-5 rounded-2xl border border-surface-container bg-white hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${stat.color}15` }}>
+                      <Icon className="w-4 h-4" style={{ color: stat.color }} />
+                    </div>
+                    <span className="font-mono text-[10px] text-secondary uppercase tracking-widest">{stat.label}</span>
                   </div>
-                  <span className="stats-number font-serif text-3xl font-normal">{stat.value}</span>
-                </div>
+                  <span className="font-display font-bold text-3xl stat-num">{stat.value}</span>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </section>
 
-        {/* ── SECTION 2: SELECTED WORK ── */}
+        {/* ═══ SELECTED WORK ═══ */}
         <section className="py-20" id="work">
-          <div className="section-reveal mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
             <div>
-              <h2 className="font-serif text-4xl text-on-surface font-normal">Selected Work</h2>
-              <p className="font-mono text-xs text-secondary uppercase tracking-widest mt-2">2023 — PRESENT</p>
+              <p className="font-mono text-xs text-primary font-semibold uppercase tracking-widest mb-2">Portfolio</p>
+              <h2 className="font-display font-bold text-4xl md:text-5xl text-on-surface">Selected Work</h2>
+              <p className="font-mono text-xs text-secondary uppercase tracking-wider mt-2">2023 — 2025</p>
             </div>
-
-            {/* Category filter tabs */}
-            <div className="flex flex-wrap gap-1.5 bg-surface-container-low p-1 rounded-xl border border-surface-container">
+            {/* Filter tabs */}
+            <div className="flex flex-wrap gap-1.5 p-1 bg-surface-container rounded-xl border border-surface-container-high">
               {[
-                { label: 'All', id: 'all', count: PROJECTS.length },
-                { label: 'ML / AI', id: 'ml', count: PROJECTS.filter(p => p.category === 'ml').length },
-                { label: 'Full-Stack', id: 'fullstack', count: PROJECTS.filter(p => p.category === 'fullstack').length },
-                { label: 'DevOps', id: 'devops', count: PROJECTS.filter(p => p.category === 'devops').length },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setSelectedCategory(tab.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-mono font-medium transition-all ${
-                    selectedCategory === tab.id
-                      ? 'bg-white text-primary shadow-sm border border-primary/10'
-                      : 'text-secondary hover:text-on-surface'
-                  }`}
-                >
-                  {categoryIcon(tab.id)}
+                { label: 'All', id: 'all' },
+                { label: 'ML / AI', id: 'ml' },
+                { label: 'Full-Stack', id: 'fullstack' },
+                { label: 'DevOps', id: 'devops' },
+              ].map(tab => (
+                <button key={tab.id} onClick={() => setSelectedCategory(tab.id)}
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-lg font-display text-xs font-medium transition-all duration-200 ${selectedCategory === tab.id ? 'bg-white text-primary shadow-sm border border-primary/10' : 'text-secondary hover:text-on-surface'}`}>
                   {tab.label}
-                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-semibold ${
-                    selectedCategory === tab.id ? 'bg-primary/10 text-primary' : 'bg-surface-container text-secondary'
-                  }`}>
-                    {tab.count}
+                  <span className={`min-w-[18px] text-center text-[10px] font-bold px-1.5 py-0.5 rounded-full ${selectedCategory === tab.id ? 'bg-primary/10 text-primary' : 'bg-surface-container-high text-secondary'}`}>
+                    {catCounts[tab.id as keyof typeof catCounts]}
                   </span>
                 </button>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Project list */}
-          <div className="flex flex-col border-t border-surface-container" id="projects-feed">
+          <div className="flex flex-col border-t border-surface-container">
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => {
+              {filtered.map((proj, idx) => {
                 const isHighlighted = highlightedTech
-                  ? project.fullTags.some((tag) => tag.toLowerCase().includes(highlightedTech.toLowerCase()))
+                  ? proj.fullTags.some(t => t.toLowerCase().includes(highlightedTech.toLowerCase()))
                   : false;
-
                 return (
-                  <motion.article
-                    key={project.id}
-                    layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ delay: index * 0.07, duration: 0.35 }}
-                    onClick={() => setSelectedProject(project)}
-                    className={`project-row group editorial-divider py-10 cursor-pointer ${
-                      isHighlighted ? 'bg-primary/5 border-l-4 border-l-primary pl-4' : 'hover:bg-surface-container-low/50 pl-0'
-                    }`}
-                    id={`project-card-${project.id}`}
+                  <motion.article key={proj.id} layout
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.97 }} transition={{ delay: idx * 0.06 }}
+                    onClick={() => setSelectedProject(proj)}
+                    className={`proj-card group py-9 border-b border-surface-container cursor-pointer px-4 rounded-xl my-1 ${isHighlighted ? 'highlighted' : ''}`}
+                    id={`project-${proj.id}`}
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-                      <div className="md:col-span-1 font-mono text-secondary text-sm font-bold">
-                        {project.number}
-                      </div>
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
+                      {/* Number */}
+                      <div className="md:col-span-1 font-mono text-secondary/60 text-sm font-semibold pt-1">{proj.number}</div>
 
-                      <div className="md:col-span-4 flex flex-col gap-2">
-                        <h3 className="font-serif text-3xl text-on-surface group-hover:text-primary transition-colors flex items-center gap-2">
-                          {project.title}
-                          <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-primary" />
-                        </h3>
-                        {/* Category badge */}
-                        <span className="w-fit text-[10px] font-mono px-2 py-0.5 rounded-full bg-primary/8 text-primary border border-primary/15 uppercase tracking-wider font-semibold">
-                          {project.category === 'ml' ? 'ML / AI' : project.category === 'fullstack' ? 'Full-Stack' : project.category === 'devops' ? 'DevOps' : project.category}
-                        </span>
+                      {/* Title + badges */}
+                      <div className="md:col-span-4">
+                        <div className="flex items-start gap-2 flex-wrap mb-2">
+                          <h3 className="font-display font-bold text-2xl md:text-3xl text-on-surface group-hover:text-primary transition-colors duration-200 flex items-center gap-2">
+                            {proj.title}
+                            <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-primary flex-shrink-0" />
+                          </h3>
+                        </div>
+                        <p className="font-sans text-xs text-secondary mb-2">{proj.subtitle}</p>
+                        <div className="flex flex-wrap gap-1.5 items-center">
+                          {statusBadge(proj.status)}
+                          <span className="font-mono text-[10px] text-secondary">· {proj.year}</span>
+                        </div>
                         {/* Mobile tags */}
-                        <div className="flex flex-wrap gap-1.5 md:hidden mt-1">
-                          {project.tags.map((tag) => (
-                            <span key={tag} className="px-2 py-0.5 bg-surface-container rounded text-[10px] font-mono text-secondary">
-                              {tag}
-                            </span>
+                        <div className="flex flex-wrap gap-1.5 mt-3 md:hidden">
+                          {proj.tags.map(t => (
+                            <span key={t} className="tag-pill px-2 py-0.5 bg-surface-container text-secondary rounded-md text-[10px] font-mono border border-surface-container-high">{t}</span>
                           ))}
                         </div>
                       </div>
 
-                      <div className="md:col-span-5 font-sans text-sm text-on-surface-variant leading-relaxed">
-                        {project.shortDesc}
-                        {/* Metrics row */}
-                        <div className="hidden md:flex items-center gap-4 mt-4">
-                          {project.metrics.slice(0, 2).map((m) => (
-                            <div key={m.label} className="flex flex-col">
-                              <span className="font-mono text-[10px] text-secondary uppercase tracking-wider">{m.label}</span>
-                              <span className="font-mono text-sm text-primary font-semibold">{m.value}</span>
+                      {/* Description + metrics + tags */}
+                      <div className="md:col-span-5">
+                        <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-4">{proj.shortDesc}</p>
+                        {/* Metrics */}
+                        <div className="hidden md:flex items-center gap-6 mb-4">
+                          {proj.metrics.slice(0, 3).map(m => (
+                            <div key={m.label} className="flex flex-col gap-0.5">
+                              <span className="font-mono text-[10px] text-secondary/70 uppercase tracking-wider">{m.label}</span>
+                              <span className="font-display font-bold text-sm text-primary">{m.value}</span>
                             </div>
                           ))}
                         </div>
-                        {/* Desktop full tags */}
-                        <div className="hidden md:flex flex-wrap gap-1.5 mt-4">
-                          {project.fullTags.map((tag) => {
-                            const isSkillFocused = highlightedTech && tag.toLowerCase().includes(highlightedTech.toLowerCase());
+                        {/* Tags desktop */}
+                        <div className="hidden md:flex flex-wrap gap-1.5">
+                          {proj.fullTags.map(t => {
+                            const active = highlightedTech && t.toLowerCase().includes(highlightedTech.toLowerCase());
                             return (
-                              <span
-                                key={tag}
-                                className={`px-2 py-1 rounded text-[10px] font-mono transition-all border ${
-                                  isSkillFocused
-                                    ? 'bg-primary text-white border-primary scale-105'
-                                    : 'bg-surface-container-low text-secondary border-surface-container hover:border-primary/30'
-                                }`}
-                              >
-                                {tag}
-                              </span>
+                              <span key={t} className={`tag-pill px-2 py-0.5 rounded-md text-[10px] font-mono border transition-all ${active ? 'active' : 'bg-surface-container text-secondary border-surface-container-high'}`}>{t}</span>
                             );
                           })}
                         </div>
                       </div>
 
-                      <div className="md:col-span-2 flex flex-row md:flex-col md:items-end gap-3 mt-4 md:mt-0">
-                        <span className="text-xs font-mono text-primary font-semibold border-b border-primary pb-0.5 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                          Case Study <span className="font-serif italic">→</span>
+                      {/* CTA */}
+                      <div className="md:col-span-2 flex md:justify-end pt-1">
+                        <span className="inline-flex items-center gap-1 text-xs font-display font-semibold text-primary border-b-2 border-primary pb-0.5 group-hover:gap-2 transition-all">
+                          Case Study <ChevronRight className="w-3.5 h-3.5" />
                         </span>
                       </div>
                     </div>
@@ -494,337 +450,324 @@ export default function App() {
           </div>
         </section>
 
-        {/* ── SECTION 3: ML LAB ── */}
-        <section className="py-20 editorial-divider section-reveal" id="lab">
+        {/* ═══ ML LAB ═══ */}
+        <section className="py-20 border-t border-surface-container reveal" id="lab">
           <MlPlayground />
         </section>
 
-        {/* ── SECTION 4: ACTIVE RESEARCH ── */}
-        <section className="py-20 editorial-divider section-reveal">
-          <div className="mb-12">
-            <h2 className="font-serif text-4xl text-on-surface font-normal">Active Research & Deployments</h2>
-            <p className="font-mono text-xs text-secondary uppercase tracking-widest mt-2">In Progress</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-            {/* Track 1 */}
-            <div className="card-lift pl-6 border-l-2 border-primary-container relative bg-white rounded-xl p-6 shadow-sm border border-surface-container">
-              <div className="absolute top-6 -left-[5px] w-2.5 h-2.5 rounded-full bg-primary-container border-2 border-white" />
-              <div className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 border border-primary-container text-[9px] font-mono text-primary uppercase tracking-widest rounded-full bg-primary/5 font-semibold">
-                <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-primary inline-block" />
-                ACTIVE DEPLOYMENT
+        {/* ═══ ACTIVE RESEARCH ═══ */}
+        <section className="py-20 border-t border-surface-container reveal">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="mb-12">
+            <p className="font-mono text-xs text-primary font-semibold uppercase tracking-widest mb-2">Status</p>
+            <h2 className="font-display font-bold text-4xl text-on-surface">Active Research & Deployments</h2>
+          </motion.div>
+          <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div variants={item} className="lift p-7 rounded-2xl bg-gradient-to-br from-violet-50 to-white border border-violet-100 relative overflow-hidden">
+              <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-primary/5 blur-xl" />
+              <div className="mb-4 flex items-center gap-2">
+                <span className="pulse-dot w-2 h-2 rounded-full bg-primary inline-block" />
+                <span className="font-mono text-[10px] text-primary uppercase tracking-widest font-semibold">Active Deployment</span>
               </div>
-              <h3 className="font-sans font-bold text-lg text-on-surface mb-2">
-                Post Engagement Prediction Engine
-              </h3>
-              <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-4">
+              <h3 className="font-display font-bold text-xl text-on-surface mb-2">Post Engagement Prediction Engine</h3>
+              <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-5">
                 Building predictive ML algorithms at Deuglo to forecast user interaction metrics, publication velocity thresholds, and audience engagement indexes prior to publish times.
               </p>
-              <div className="flex gap-2 font-mono text-xs text-secondary font-medium">
-                <span className="px-2 py-0.5 bg-surface-container rounded text-[10px]">XGBoost</span>
-                <span className="px-2 py-0.5 bg-surface-container rounded text-[10px]">SHAP</span>
-                <span className="px-2 py-0.5 bg-surface-container rounded text-[10px]">FastAPI</span>
+              <div className="flex gap-2">
+                {['XGBoost', 'SHAP', 'FastAPI', 'AWS'].map(t => (
+                  <span key={t} className="font-mono text-[10px] px-2.5 py-1 rounded-lg bg-violet-100/60 text-violet-700 border border-violet-200/60">{t}</span>
+                ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Track 2 */}
-            <div className="card-lift pl-6 border-l-2 border-outline-variant relative bg-white rounded-xl p-6 shadow-sm border border-surface-container">
-              <div className="absolute top-6 -left-[5px] w-2.5 h-2.5 rounded-full bg-outline-variant border-2 border-white" />
-              <div className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 border border-outline text-[9px] font-mono text-secondary uppercase tracking-widest rounded-full bg-surface-container-low font-semibold">
-                <Award className="w-3 h-3" /> RESEARCH LAB
+            <motion.div variants={item} className="lift p-7 rounded-2xl bg-gradient-to-br from-surface-container-low to-white border border-surface-container relative overflow-hidden">
+              <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-amber-400/5 blur-xl" />
+              <div className="mb-4 flex items-center gap-2">
+                <Award className="w-3.5 h-3.5 text-amber-500" />
+                <span className="font-mono text-[10px] text-secondary uppercase tracking-widest font-semibold">Research Lab</span>
               </div>
-              <h3 className="font-sans font-bold text-lg text-on-surface mb-2">
-                CascadeIQ (TGN Modeler)
-              </h3>
-              <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-4">
-                A social media intelligence network tracking virality pathways. Models information cascade propagation structures across dynamic temporal graphs.
+              <h3 className="font-display font-bold text-xl text-on-surface mb-2">CascadeIQ — TGN Virality Modeler</h3>
+              <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-5">
+                Social media intelligence system tracking information cascade propagation pathways using Temporal Graph Networks. Targeting IEEE Access publication.
               </p>
-              <div className="flex justify-between items-center text-xs font-mono text-secondary">
-                <span>Target: IEEE Access</span>
-                <span className="flex items-center gap-1 text-primary font-semibold">
-                  <Award className="w-3.5 h-3.5" /> Paper Drafted
-                </span>
+              <div className="flex justify-between items-center">
+                <div className="flex gap-2">
+                  {['PyG', 'TGN', 'D3.js'].map(t => (
+                    <span key={t} className="font-mono text-[10px] px-2.5 py-1 rounded-lg bg-surface-container text-secondary border border-surface-container-high">{t}</span>
+                  ))}
+                </div>
+                <span className="font-display text-xs font-semibold text-amber-600 flex items-center gap-1"><Award className="w-3.5 h-3.5" /> Paper Drafted</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </section>
 
-        {/* ── SECTION 5: EXPERIENCE + SKILLS ── */}
-        <section className="py-20 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 editorial-divider">
+        {/* ═══ ACHIEVEMENTS ═══ */}
+        <section className="py-16 border-t border-surface-container reveal">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
+            <p className="font-mono text-xs text-primary font-semibold uppercase tracking-widest mb-2">Recognition</p>
+            <h2 className="font-display font-bold text-3xl text-on-surface">Highlights & Achievements</h2>
+          </motion.div>
+          <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {ACHIEVEMENTS.map(a => (
+              <motion.div key={a.id} variants={item}
+                className="lift p-5 rounded-2xl border border-surface-container bg-white hover:border-primary/20 group">
+                <div className="text-2xl mb-3">{a.icon}</div>
+                <h4 className="font-display font-semibold text-sm text-on-surface mb-1 group-hover:text-primary transition-colors">{a.title}</h4>
+                <p className="font-sans text-xs text-secondary leading-relaxed mb-2">{a.body}</p>
+                <span className="font-mono text-[10px] text-secondary/60">{a.year}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* ═══ EXPERIENCE + SKILLS ═══ */}
+        <section className="py-20 grid grid-cols-1 lg:grid-cols-12 gap-14 border-t border-surface-container reveal" id="about">
           {/* Timeline */}
-          <div className="lg:col-span-7 section-reveal">
-            <h2 className="font-serif text-3xl text-on-surface mb-10 font-normal">Experience & Education</h2>
-            <div className="flex flex-col gap-10 border-l border-surface-container pl-8 relative">
-              {TIMELINE.map((item, index) => (
-                <div key={item.id} className="relative group">
-                  <div className={`absolute -left-[37px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-white transition-all duration-300 group-hover:scale-125 ${
-                    index === 0 ? 'bg-primary' : 'bg-surface-dim'
-                  }`} />
-                  <div className="text-xs font-mono text-secondary mb-1">{item.period}</div>
-                  <h4 className="font-sans font-bold text-base text-on-surface group-hover:text-primary transition-colors">
-                    {item.role}
-                  </h4>
-                  <p className="font-sans text-sm text-primary font-medium">{item.organization}</p>
-                  <ul className="list-disc pl-4 mt-2 font-sans text-xs text-on-surface-variant flex flex-col gap-1 leading-relaxed">
-                    {item.details.map((detail, idx) => (
-                      <li key={idx}>{detail}</li>
+          <div className="lg:col-span-7">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <p className="font-mono text-xs text-primary font-semibold uppercase tracking-widest mb-2">Background</p>
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-on-surface mb-10">Experience & Education</h2>
+            </motion.div>
+            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }}
+              className="flex flex-col gap-8 border-l-2 border-surface-container pl-8 relative">
+              {TIMELINE.map((t, i) => (
+                <motion.div key={t.id} variants={item} className="relative group">
+                  <div className={`absolute -left-[37px] top-1.5 w-3 h-3 rounded-full border-2 border-white transition-all group-hover:scale-125 ${i === 0 ? 'bg-primary shadow-md shadow-primary/30' : 'bg-surface-dim'}`} />
+                  <div className="font-mono text-[10px] text-secondary uppercase tracking-wider mb-1">{t.period}</div>
+                  <h4 className="font-display font-bold text-base text-on-surface group-hover:text-primary transition-colors">{t.role}</h4>
+                  <p className="font-sans text-sm text-primary font-medium mb-2">{t.organization}</p>
+                  <ul className="flex flex-col gap-1.5">
+                    {t.details.map((d, di) => (
+                      <li key={di} className="flex gap-2 text-xs text-on-surface-variant leading-relaxed font-sans">
+                        <ChevronRight className="w-3.5 h-3.5 text-primary/40 mt-0.5 flex-shrink-0" /> {d}
+                      </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
+
+            {/* Certifications */}
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="mt-12">
+              <h3 className="font-display font-semibold text-lg text-on-surface mb-5 flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-primary" /> Certifications
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {CERTIFICATIONS.map(c => (
+                  <div key={c.id} className="lift flex items-start gap-3 p-4 rounded-xl border border-surface-container bg-white hover:border-primary/20">
+                    <span className="text-xl flex-shrink-0">{c.badge}</span>
+                    <div>
+                      <p className="font-display font-semibold text-xs text-on-surface">{c.name}</p>
+                      <p className="font-sans text-[11px] text-secondary mt-0.5">{c.issuer}</p>
+                      <span className="font-mono text-[10px] text-secondary/60">{c.date}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
-          {/* Technical Stack */}
-          <div className="lg:col-span-5 section-reveal">
-            <div className="bg-white glass-card rounded-2xl p-6 md:p-8 sticky top-24">
+          {/* Skills panel */}
+          <div className="lg:col-span-5">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="glass rounded-2xl p-6 md:p-8 border border-surface-container sticky top-24">
               <div className="mb-6">
-                <h3 className="font-serif text-2xl text-on-surface">Technical Stack</h3>
-                <p className="font-sans text-xs text-secondary mt-1">
-                  Hover any category to highlight matching projects above.
-                </p>
+                <h3 className="font-display font-bold text-2xl text-on-surface">Technical Stack</h3>
+                <p className="font-sans text-xs text-secondary mt-1">Hover a category to cross-reference projects above.</p>
               </div>
-
-              <div className="flex flex-col divide-y divide-surface-container">
-                {SKILL_CATEGORIES.map((cat) => (
-                  <div
-                    key={cat.id}
+              <div className="flex flex-col gap-1">
+                {SKILL_CATEGORIES.map(cat => (
+                  <div key={cat.id}
                     onMouseEnter={() => setHighlightedTech(cat.category)}
                     onMouseLeave={() => setHighlightedTech(null)}
-                    className="py-4 hover:bg-surface-container-low/50 px-3 rounded-lg transition-all duration-200 cursor-help group"
-                  >
-                    <div className="font-mono text-[10px] text-primary uppercase tracking-wider mb-2 font-bold group-hover:text-primary-container transition-colors">
-                      {cat.category}
+                    className="skill-row px-3 py-3.5 cursor-help group">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-base">{cat.icon}</span>
+                      <span className="font-mono text-[10px] text-primary uppercase tracking-widest font-bold group-hover:text-primary-container transition-colors">{cat.category}</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {cat.techs.map(tech => (
-                        <span
-                          key={tech}
-                          className="skill-pill px-2 py-0.5 bg-surface-container text-secondary rounded text-[10px] font-mono border border-transparent hover:border-primary/30 hover:text-primary"
-                        >
-                          {tech}
-                        </span>
+                        <span key={tech} className="tag-pill px-2 py-0.5 bg-surface-container text-secondary rounded-md text-[10px] font-mono border border-surface-container-high">{tech}</span>
                       ))}
                     </div>
                   </div>
                 ))}
               </div>
-
-              <div className="mt-6 p-3 bg-primary/5 border border-primary/10 rounded-xl text-[11px] text-secondary font-sans leading-relaxed">
-                <strong className="text-primary">✦ Tip:</strong> Categories cross-reference with project cards — hover to see matching work.
+              <div className="mt-5 p-3.5 bg-primary/5 border border-primary/10 rounded-xl text-xs text-secondary font-sans leading-relaxed">
+                <strong className="text-primary">✦ Pro tip:</strong> Skills cross-reference the project cards — hover to highlight matching work.
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* ── SECTION 6: CONTACT ── */}
-        <section className="py-20 section-reveal" id="contact">
+        {/* ═══ CONTACT ═══ */}
+        <section className="py-20 border-t border-surface-container reveal" id="contact">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-
-            {/* Info */}
-            <div className="lg:col-span-5 flex flex-col justify-between h-full">
-              <div>
-                <p className="font-mono text-xs text-primary uppercase tracking-widest mb-3 font-semibold">Get in touch</p>
-                <h2 className="font-serif text-5xl md:text-6xl text-on-surface font-normal mb-6 leading-tight">
-                  Let's build<br />something<br /><span className="gradient-text italic">great.</span>
+            {/* Left */}
+            <div className="lg:col-span-5">
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                <p className="font-mono text-xs text-primary font-semibold uppercase tracking-widest mb-3">Get in touch</p>
+                <h2 className="font-display font-bold text-5xl md:text-6xl text-on-surface leading-tight mb-6">
+                  Let's build<br />something<br /><span className="gradient-text">great.</span>
                 </h2>
                 <p className="font-sans text-base text-on-surface-variant leading-relaxed mb-8">
-                  Open to full-time roles, internships, and research collaborations exploring the intersection of machine learning and high-scale full-stack infrastructure.
+                  Open to full-time roles, internships, and research collaborations at the intersection of machine learning and high-scale infrastructure.
                 </p>
-
-                {/* Contact details */}
-                <div className="flex flex-col gap-3 font-mono text-xs text-on-surface mb-8">
-                  <a href="mailto:atulvatsamishra@gmail.com" className="flex items-center gap-3 group hover:text-primary transition-colors">
-                    <div className="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                      <Mail className="w-4 h-4 text-secondary group-hover:text-primary" />
+                <div className="flex flex-col gap-4 mb-8">
+                  <a href="mailto:atulvatsamishra@gmail.com"
+                    className="flex items-center gap-3 group text-sm font-sans hover:text-primary transition-colors">
+                    <div className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                      <Mail className="w-4 h-4 text-secondary group-hover:text-primary transition-colors" />
                     </div>
-                    atulvatsamishra@gmail.com
+                    <div>
+                      <p className="text-[10px] font-mono text-secondary uppercase tracking-wider">Email</p>
+                      <p className="font-mono text-xs text-on-surface">atulvatsamishra@gmail.com</p>
+                    </div>
                   </a>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center">
+                  <div className="flex items-center gap-3 text-sm font-sans">
+                    <div className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center">
                       <MapPin className="w-4 h-4 text-secondary" />
                     </div>
-                    Chennai, India (VIT Student)
+                    <div>
+                      <p className="text-[10px] font-mono text-secondary uppercase tracking-wider">Location</p>
+                      <p className="font-mono text-xs text-on-surface">Chennai, India · VIT Student</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Social links */}
-              <div className="flex flex-wrap gap-3 pt-4 border-t border-surface-container">
-                <a
-                  href="https://github.com/anshumanvatsa"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="card-lift flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-mono text-secondary hover:border-primary hover:text-primary transition-all bg-white"
-                >
-                  <Github className="w-3.5 h-3.5" /> GitHub
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="card-lift flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-mono text-secondary hover:border-primary hover:text-primary transition-all bg-white"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" /> LinkedIn
-                </a>
-                <button
-                  onClick={() => setIsResumeOpen(true)}
-                  className="card-lift flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-mono text-secondary hover:border-primary hover:text-primary transition-all bg-white"
-                >
-                  <Download className="w-3.5 h-3.5" /> Resume
-                </button>
-              </div>
+                <div className="flex flex-wrap gap-3 pt-4 border-t border-surface-container">
+                  {[
+                    { label: 'GitHub', href: 'https://github.com/anshumanvatsa', icon: <Github className="w-4 h-4" /> },
+                    { label: 'LinkedIn', href: 'https://linkedin.com', icon: <ExternalLink className="w-4 h-4" /> },
+                  ].map(s => (
+                    <motion.a key={s.label} href={s.href} target="_blank" rel="noreferrer"
+                      whileHover={{ y: -3 }} whileTap={{ scale: 0.96 }}
+                      className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-display font-medium text-secondary hover:text-primary hover:border-primary/30 bg-white transition-all">
+                      {s.icon} {s.label}
+                    </motion.a>
+                  ))}
+                  <motion.button whileHover={{ y: -3 }} whileTap={{ scale: 0.96 }}
+                    onClick={() => setIsResumeOpen(true)}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-display font-medium text-secondary hover:text-primary hover:border-primary/30 bg-white transition-all">
+                    <Download className="w-4 h-4" /> Resume
+                  </motion.button>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Form */}
-            <div className="lg:col-span-7 glass-card rounded-2xl p-6 md:p-8">
+            {/* Form card */}
+            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="lg:col-span-7 glass rounded-2xl p-7 md:p-9 border border-surface-container">
               <div className="flex justify-between items-center mb-6">
-                <h3 className="font-sans font-bold text-sm text-on-surface uppercase tracking-wider">
-                  {showInquiries ? 'Visitor Feedback Log' : 'Direct Message Channel'}
+                <h3 className="font-display font-bold text-sm text-on-surface uppercase tracking-wider">
+                  {showInquiries ? 'Visitor Feedback' : 'Send a Direct Message'}
                 </h3>
-                <button
-                  onClick={() => setShowInquiries(!showInquiries)}
-                  className="text-xs font-mono text-primary hover:underline inline-flex items-center gap-1.5"
-                  id="toggle-inbox-btn"
-                >
+                <button onClick={() => setShowInquiries(!showInquiries)}
+                  className="flex items-center gap-1.5 text-xs font-mono text-primary hover:underline"
+                  id="toggle-inbox-btn">
                   <MessageSquareText className="w-3.5 h-3.5" />
-                  {showInquiries ? 'Write a message' : `View logs (${messages.length})`}
+                  {showInquiries ? 'Write message' : `View logs (${messages.length})`}
                 </button>
               </div>
 
-              {showInquiries ? (
-                <div className="flex flex-col gap-4 max-h-[380px] overflow-y-auto pr-2">
-                  <p className="text-xs text-secondary font-sans italic mb-1">Simulated secure sandbox mailbox. Viewing feedback:</p>
-                  {messages.length === 0 ? (
-                    <div className="text-center py-10 text-xs text-secondary font-mono">
-                      No messages yet. Be the first to write!
-                    </div>
-                  ) : (
-                    messages.map((msg, idx) => (
-                      <div key={idx} className="p-4 bg-white rounded-xl border border-surface-container text-xs flex flex-col gap-2 card-lift">
+              <AnimatePresence mode="wait">
+                {showInquiries ? (
+                  <motion.div key="logs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    className="flex flex-col gap-4 max-h-[400px] overflow-y-auto pr-1">
+                    <p className="text-xs text-secondary font-sans italic">Simulated secure mailbox:</p>
+                    {messages.map((m, i) => (
+                      <div key={i} className="p-4 bg-white rounded-xl border border-surface-container text-xs lift flex flex-col gap-2">
                         <div className="flex justify-between items-baseline">
-                          <span className="font-bold text-on-surface">{msg.name}</span>
-                          <span className="text-[10px] text-secondary font-mono">{msg.timestamp}</span>
+                          <span className="font-display font-bold text-on-surface">{m.name}</span>
+                          <span className="font-mono text-[10px] text-secondary">{m.timestamp}</span>
                         </div>
-                        <p className="font-mono text-[10px] text-primary">{msg.company} · {msg.email}</p>
-                        <p className="text-on-surface-variant font-sans leading-relaxed italic bg-surface p-2.5 rounded-lg text-[11px]">
-                          "{msg.message}"
-                        </p>
+                        <p className="font-mono text-[10px] text-primary">{m.company} · {m.email}</p>
+                        <p className="text-on-surface-variant font-sans leading-relaxed italic bg-surface p-3 rounded-lg text-[11px]">"{m.message}"</p>
                       </div>
-                    ))
-                  )}
-                </div>
-              ) : (
-                <form onSubmit={handleSendMessage} className="flex flex-col gap-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block font-sans text-xs text-secondary mb-1.5">Your Name *</label>
-                      <input
-                        type="text"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="e.g. Dr. Jordan"
-                        className="w-full bg-white border border-surface-container rounded-lg p-3 text-xs focus:outline-none focus:border-primary transition-colors"
-                      />
+                    ))}
+                  </motion.div>
+                ) : (
+                  <motion.form key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    onSubmit={handleSend} className="flex flex-col gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block font-sans text-xs text-secondary mb-1.5 font-medium">Name *</label>
+                        <input type="text" required value={name} onChange={e => setName(e.target.value)}
+                          placeholder="Dr. Jordan Smith"
+                          className="field w-full bg-white border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
+                      </div>
+                      <div>
+                        <label className="block font-sans text-xs text-secondary mb-1.5 font-medium">Email *</label>
+                        <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
+                          placeholder="jordan@org.com"
+                          className="field w-full bg-white border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
+                      </div>
                     </div>
                     <div>
-                      <label className="block font-sans text-xs text-secondary mb-1.5">Email Address *</label>
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="e.g. jordan@hospital.org"
-                        className="w-full bg-white border border-surface-container rounded-lg p-3 text-xs focus:outline-none focus:border-primary transition-colors"
-                      />
+                      <label className="block font-sans text-xs text-secondary mb-1.5 font-medium">Organization (Optional)</label>
+                      <input type="text" value={company} onChange={e => setCompany(e.target.value)}
+                        placeholder="Research Institute of Technology"
+                        className="field w-full bg-white border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
                     </div>
-                  </div>
-
-                  <div>
-                    <label className="block font-sans text-xs text-secondary mb-1.5">Organization / Company (Optional)</label>
-                    <input
-                      type="text"
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      placeholder="e.g. Research Institute of Technology"
-                      className="w-full bg-white border border-surface-container rounded-lg p-3 text-xs focus:outline-none focus:border-primary transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block font-sans text-xs text-secondary mb-1.5">Enquiry Details *</label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Type your message or project collaboration outline here..."
-                      className="w-full bg-white border border-surface-container rounded-lg p-3 text-xs focus:outline-none focus:border-primary resize-none transition-colors"
-                    />
-                  </div>
-
-                  {isSubmitSuccess && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl flex gap-2 items-center text-xs font-sans"
-                    >
-                      <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                      <span>Message saved! Toggle "View logs" above to read.</span>
-                    </motion.div>
-                  )}
-
-                  <button
-                    type="submit"
-                    className="btn-primary-glow inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-white text-xs font-mono font-semibold rounded-xl"
-                    id="submit-message-form-btn"
-                  >
-                    <Send className="w-3.5 h-3.5" /> Submit Direct Message
-                  </button>
-                </form>
-              )}
-            </div>
+                    <div>
+                      <label className="block font-sans text-xs text-secondary mb-1.5 font-medium">Message *</label>
+                      <textarea required rows={4} value={message} onChange={e => setMessage(e.target.value)}
+                        placeholder="Tell me about your project, collaboration idea, or opportunity..."
+                        className="field w-full bg-white border border-surface-container rounded-xl px-4 py-3 text-sm font-sans resize-none" />
+                    </div>
+                    <AnimatePresence>
+                      {isSubmitSuccess && (
+                        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                          className="flex items-center gap-2.5 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs font-sans">
+                          <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          Message saved! Toggle "View logs" to read it.
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                    <motion.button whileHover={{ scale: 1.02, y: -1 }} whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="btn-glow flex items-center justify-center gap-2 py-3.5 bg-primary text-white rounded-xl font-display font-semibold text-sm"
+                      id="submit-btn">
+                      <Send className="w-4 h-4" /> Send Message
+                    </motion.button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </motion.div>
           </div>
         </section>
-
       </main>
 
-      {/* ===== FOOTER ===== */}
-      <footer className="bg-on-surface text-white mt-auto">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+      {/* ═══ FOOTER ═══ */}
+      <footer className="bg-[#09090b] text-white mt-auto">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="font-mono text-white text-xs font-bold">AM</span>
+            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/30">
+              <span className="font-display font-bold text-white text-xs">AM</span>
             </div>
             <div>
-              <p className="font-serif text-white text-lg">Anshuman Mishra</p>
-              <p className="font-mono text-[10px] text-white/40 uppercase tracking-wider">ML Engineer · VIT Chennai</p>
+              <p className="font-display font-semibold text-white text-base">Anshuman Mishra</p>
+              <p className="font-mono text-[10px] text-white/40 uppercase tracking-wider">ML Engineer · VIT Chennai '27</p>
             </div>
           </div>
-          <div className="flex items-center gap-6 text-xs font-mono text-white/50">
-            <a href="https://github.com/anshumanvatsa" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
+          <div className="flex items-center gap-6 text-xs font-mono text-white/40">
+            <a href="https://github.com/anshumanvatsa" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">
               <Github className="w-3.5 h-3.5" /> GitHub
             </a>
-            <a href="mailto:atulvatsamishra@gmail.com" className="hover:text-white transition-colors flex items-center gap-1">
+            <a href="mailto:atulvatsamishra@gmail.com" className="hover:text-white transition-colors flex items-center gap-1.5">
               <Mail className="w-3.5 h-3.5" /> Email
             </a>
           </div>
-          <p className="text-xs font-mono text-white/40 text-center">
-            © 2026 Anshuman Mishra · Built with React + Vite
-          </p>
+          <p className="text-xs font-mono text-white/30 text-center">© 2026 Anshuman Mishra · Built with React + Vite</p>
         </div>
       </footer>
 
       {/* Modals */}
-      <CaseStudyModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
-      <ResumeViewer
-        isOpen={isResumeOpen}
-        onClose={() => setIsResumeOpen(false)}
-      />
+      <CaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ResumeViewer isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </div>
   );
 }
