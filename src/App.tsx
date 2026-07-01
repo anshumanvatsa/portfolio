@@ -745,7 +745,7 @@ export default function App() {
               <span className="font-display font-bold text-white text-xs">AM</span>
             </div>
             <div>
-              <p className="font-display font-semibold text-white text-base">Anshuman Mishra</p>
+              <p className="font-display font-semibold text-white text-base">Anshuman</p>
               <p className="font-mono text-[10px] text-white/40 uppercase tracking-wider">ML Engineer · VIT Chennai '27</p>
             </div>
           </div>
@@ -757,7 +757,7 @@ export default function App() {
               <Mail className="w-3.5 h-3.5" /> Email
             </a>
           </div>
-          <p className="text-xs font-mono text-white/30 text-center">© 2026 Anshuman Mishra · Built with React + Vite</p>
+          <p className="text-xs font-mono text-white/30 text-center">© 2026 Anshuman · Built with React + Vite</p>
         </div>
       </footer>
 

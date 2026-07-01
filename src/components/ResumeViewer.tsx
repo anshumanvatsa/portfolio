@@ -124,7 +124,7 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
           <div className="bg-[#09090b] px-6 py-4 flex justify-between items-center print:hidden">
             <div className="flex items-center gap-2.5">
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-              <span className="font-mono text-xs text-white/50 uppercase tracking-widest">Resume · Anshuman Mishra</span>
+              <span className="font-mono text-xs text-white/50 uppercase tracking-widest">Resume · Anshuman</span>
             </div>
             <div className="flex items-center gap-2">
               <button
