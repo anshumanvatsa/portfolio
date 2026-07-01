@@ -17,10 +17,10 @@ interface Message {
 }
 
 const STATS = [
-  { label: 'Projects Shipped', value: '12+', icon: Zap, color: '#6c47ff' },
-  { label: 'ML Models', value: '6', icon: Cpu, color: '#a855f7' },
+  { label: 'Live Projects', value: '3', icon: Zap, color: '#6c47ff' },
+  { label: 'Backend Endpoints', value: '6+', icon: Cpu, color: '#a855f7' },
   { label: 'CGPA', value: '8.83', icon: Award, color: '#06b6d4' },
-  { label: 'Technologies', value: '25+', icon: Layers, color: '#f59e0b' },
+  { label: 'Technologies', value: '20+', icon: Layers, color: '#f59e0b' },
 ];
 
 const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'Graph Theorist.', 'Open Source Builder.'];
@@ -269,9 +269,8 @@ export default function App() {
 
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
               className="font-sans text-base md:text-[17px] text-on-surface-variant leading-relaxed max-w-xl">
-              I build <strong className="text-on-surface font-semibold">AI-powered products</strong> end to end — from training deep learning models to shipping production APIs to designing pixel-perfect interfaces. Currently building prediction engines at{' '}
-              <strong className="text-on-surface font-semibold">Deuglo</strong> and researching virality forecasting with{' '}
-              <strong className="text-on-surface font-semibold">Temporal Graph Networks</strong>.
+              Final-year CS student at VIT Chennai, currently an <strong className="text-on-surface font-semibold">ML Intern at Deuglo</strong> building AI-driven product features. Experienced across deep learning, full-stack development, and cloud deployment through{' '}
+              <strong className="text-on-surface font-semibold">3 production-grade personal projects</strong>.
             </motion.p>
 
             {/* CTAs */}
@@ -291,14 +290,18 @@ export default function App() {
 
             {/* Social links */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}
-              className="flex items-center gap-5 font-mono text-xs text-secondary">
+              className="flex flex-wrap gap-5 font-mono text-xs text-secondary">
               <a href="https://github.com/anshumanvatsa" target="_blank" rel="noreferrer"
                 className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                <Github className="w-3.5 h-3.5" /> @anshumanvatsa
+                <Github className="w-3.5 h-3.5" /> github.com/anshumanvatsa
+              </a>
+              <span>·</span>
+              <a href="https://linkedin.com/in/anshuman-vatsa-mishra" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <ExternalLink className="w-3.5 h-3.5" /> linkedin.com/in/anshuman-vatsa-mishra
               </a>
               <span>·</span>
               <a href="mailto:atulvatsamishra@gmail.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                <Mail className="w-3.5 h-3.5" /> Email
+                <Mail className="w-3.5 h-3.5" /> atulvatsamishra@gmail.com
               </a>
               <span>·</span>
               <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> Chennai, IN</span>
@@ -468,14 +471,14 @@ export default function App() {
               <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-primary/5 blur-xl" />
               <div className="mb-4 flex items-center gap-2">
                 <span className="pulse-dot w-2 h-2 rounded-full bg-primary inline-block" />
-                <span className="font-mono text-[10px] text-primary uppercase tracking-widest font-semibold">Active Deployment</span>
+                <span className="font-mono text-[10px] text-primary uppercase tracking-widest font-semibold">Active · May 2026 – Present</span>
               </div>
-              <h3 className="font-display font-bold text-xl text-on-surface mb-2">Post Engagement Prediction Engine</h3>
+              <h3 className="font-display font-bold text-xl text-on-surface mb-2">Post-Performance Prediction Model — Deuglo</h3>
               <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-5">
-                Building predictive ML algorithms at Deuglo to forecast user interaction metrics, publication velocity thresholds, and audience engagement indexes prior to publish times.
+                Built a post-performance prediction model for DG-Social via data enrichment, labeling, and trend-based forecasting. Shipped AI content tools (captions, hashtags, cross-platform adaptation) across 6 new backend endpoints.
               </p>
               <div className="flex gap-2">
-                {['XGBoost', 'SHAP', 'FastAPI', 'AWS'].map(t => (
+                {['PyTorch', 'XGBoost', 'FastAPI', 'DG-Social'].map(t => (
                   <span key={t} className="font-mono text-[10px] px-2.5 py-1 rounded-lg bg-violet-100/60 text-violet-700 border border-violet-200/60">{t}</span>
                 ))}
               </div>
@@ -485,19 +488,18 @@ export default function App() {
               <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-amber-400/5 blur-xl" />
               <div className="mb-4 flex items-center gap-2">
                 <Award className="w-3.5 h-3.5 text-amber-500" />
-                <span className="font-mono text-[10px] text-secondary uppercase tracking-widest font-semibold">Research Lab</span>
+                <span className="font-mono text-[10px] text-secondary uppercase tracking-widest font-semibold">Mar 2024 – Mar 2026</span>
               </div>
-              <h3 className="font-display font-bold text-xl text-on-surface mb-2">CascadeIQ — TGN Virality Modeler</h3>
+              <h3 className="font-display font-bold text-xl text-on-surface mb-2">Propulsion Engineer — Special Team-Ignition</h3>
               <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-5">
-                Social media intelligence system tracking information cascade propagation pathways using Temporal Graph Networks. Targeting IEEE Access publication.
+                Validated CFD models against experimental data for nozzle flow and combustion accuracy. Used OpenRocket/OpenMotor for motor design, trajectory, and thrust optimization.
               </p>
               <div className="flex justify-between items-center">
                 <div className="flex gap-2">
-                  {['PyG', 'TGN', 'D3.js'].map(t => (
+                  {['OpenRocket', 'OpenMotor', 'CFD', 'ANSYS'].map(t => (
                     <span key={t} className="font-mono text-[10px] px-2.5 py-1 rounded-lg bg-surface-container text-secondary border border-surface-container-high">{t}</span>
                   ))}
                 </div>
-                <span className="font-display text-xs font-semibold text-amber-600 flex items-center gap-1"><Award className="w-3.5 h-3.5" /> Paper Drafted</span>
               </div>
             </motion.div>
           </motion.div>
@@ -641,7 +643,7 @@ export default function App() {
                 <div className="flex flex-wrap gap-3 pt-4 border-t border-surface-container">
                   {[
                     { label: 'GitHub', href: 'https://github.com/anshumanvatsa', icon: <Github className="w-4 h-4" /> },
-                    { label: 'LinkedIn', href: 'https://linkedin.com', icon: <ExternalLink className="w-4 h-4" /> },
+                    { label: 'LinkedIn', href: 'https://linkedin.com/in/anshuman-vatsa-mishra', icon: <ExternalLink className="w-4 h-4" /> },
                   ].map(s => (
                     <motion.a key={s.label} href={s.href} target="_blank" rel="noreferrer"
                       whileHover={{ y: -3 }} whileTap={{ scale: 0.96 }}
