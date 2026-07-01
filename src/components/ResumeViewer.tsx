@@ -46,6 +46,14 @@ const RESUME = {
         'Used OpenRocket/OpenMotor for motor design, trajectory, and thrust optimization.',
       ],
     },
+    {
+      title: 'General Secretary',
+      company: 'Collegiate Cultural Club · VIT Chennai',
+      period: 'Jun 2025 – Jun 2026',
+      points: [
+        'Planned and executed 15+ large-scale student events end-to-end.',
+      ],
+    },
   ],
   education: [
     {
@@ -77,10 +85,11 @@ const RESUME = {
   ],
   certifications: [
     { name: 'IBM DevOps Certifications', detail: 'Fundamentals, Agile & Design Thinking, and DevOps Training', year: '2025' },
-    { name: 'Machine Learning I (Columbia+)', detail: 'Regression, classification, model evaluation', year: '2024' },
+    { name: 'Machine Learning I (Columbia+)', detail: 'Regression, classification, model evaluation', year: '2025' },
   ],
   achievements: [
-    'General Secretary, Collegiate Cultural Club — Planned & executed 15+ large-scale student events.',
+    '20+ projects on GitHub (2023 – Present) across ML, full-stack, DevOps, and security.',
+    'General Secretary, Collegiate Cultural Club (Jun 2025 – Jun 2026) — Planned & executed 15+ large-scale student events.',
   ],
 };
 

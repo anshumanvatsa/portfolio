@@ -414,7 +414,7 @@ export const TIMELINE: TimelineItem[] = [
   },
   {
     id: 'exp3',
-    period: '2023 — 2024',
+    period: 'Jun 2025 — Jun 2026',
     role: 'General Secretary',
     organization: 'Collegiate Cultural Club · VIT Chennai',
     details: [
@@ -491,7 +491,7 @@ export const CERTIFICATIONS: Certification[] = [
     id: 'c2',
     name: 'Machine Learning I',
     issuer: 'Columbia+ — Regression, classification, model evaluation',
-    date: '2024',
+    date: '2025',
     badge: '🧠',
   },
 ];
@@ -515,16 +515,16 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'a3',
-    title: '10 GitHub Projects',
-    body: 'Built and published 10+ projects on GitHub across ML, full-stack, DevOps, and security domains.',
+    title: '20+ GitHub Projects',
+    body: 'Built and published 20+ projects on GitHub from 2023 to present across ML, full-stack, DevOps, and security.',
     icon: '🚀',
-    year: '2024–2025',
+    year: '2023–Present',
   },
   {
     id: 'a4',
     title: 'General Secretary',
     body: 'Led and executed 15+ large-scale student events as General Secretary of the Collegiate Cultural Club.',
     icon: '🎭',
-    year: '2023–2024',
+    year: 'Jun 2025–Jun 2026',
   },
 ];

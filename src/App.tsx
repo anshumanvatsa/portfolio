@@ -17,7 +17,7 @@ interface Message {
 }
 
 const STATS = [
-  { label: 'Live Projects', value: '3', icon: Zap, color: '#6c47ff' },
+  { label: 'GitHub Projects', value: '20+', icon: Zap, color: '#6c47ff' },
   { label: 'Backend Endpoints', value: '6+', icon: Cpu, color: '#a855f7' },
   { label: 'CGPA', value: '8.83', icon: Award, color: '#06b6d4' },
   { label: 'Technologies', value: '20+', icon: Layers, color: '#f59e0b' },
@@ -355,7 +355,7 @@ export default function App() {
             <div>
               <p className="font-mono text-xs text-primary font-semibold uppercase tracking-widest mb-2">Portfolio</p>
               <h2 className="font-display font-bold text-4xl md:text-5xl text-on-surface">Selected Work</h2>
-              <p className="font-mono text-xs text-secondary uppercase tracking-wider mt-2">2023 — 2025</p>
+              <p className="font-mono text-xs text-secondary uppercase tracking-wider mt-2">2023 — Present · 20+ Projects</p>
             </div>
             {/* Filter tabs */}
             <div className="flex flex-wrap gap-1.5 p-1 bg-surface-container rounded-xl border border-surface-container-high">
@@ -665,14 +665,8 @@ export default function App() {
               className="lg:col-span-7 glass rounded-2xl p-7 md:p-9 border border-surface-container">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-display font-bold text-sm text-on-surface uppercase tracking-wider">
-                  {showInquiries ? 'Visitor Feedback' : 'Send a Direct Message'}
+                  Send a Direct Message
                 </h3>
-                <button onClick={() => setShowInquiries(!showInquiries)}
-                  className="flex items-center gap-1.5 text-xs font-mono text-primary hover:underline"
-                  id="toggle-inbox-btn">
-                  <MessageSquareText className="w-3.5 h-3.5" />
-                  {showInquiries ? 'Write message' : `View logs (${messages.length})`}
-                </button>
               </div>
 
               <AnimatePresence mode="wait">
@@ -725,7 +719,7 @@ export default function App() {
                         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
                           className="flex items-center gap-2.5 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs font-sans">
                           <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                          Message saved! Toggle "View logs" to read it.
+                          Message sent! I'll get back to you soon.
                         </motion.div>
                       )}
                     </AnimatePresence>
