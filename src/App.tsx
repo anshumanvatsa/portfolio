@@ -187,7 +187,7 @@ export default function App() {
             className="flex items-center gap-2.5"
           >
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-md shadow-primary/20">
-              <span className="font-display text-white text-[11px] font-bold">AM</span>
+              <span className="font-display text-white text-[11px] font-bold">A</span>
             </div>
             <span className="font-display font-semibold text-on-surface text-[15px] tracking-tight">Anshuman</span>
           </motion.button>
@@ -255,8 +255,7 @@ export default function App() {
             {/* Name */}
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}>
               <h1 className="font-display font-bold text-5xl md:text-[72px] leading-[1.05] tracking-tight text-on-surface mb-1">
-                Anshuman<br />
-                <span className="gradient-text">Mishra.</span>
+                <span className="gradient-text">Anshuman.</span>
               </h1>
             </motion.div>
 
@@ -269,8 +268,8 @@ export default function App() {
 
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
               className="font-sans text-base md:text-[17px] text-on-surface-variant leading-relaxed max-w-xl">
-              Final-year CS student at VIT Chennai, currently an <strong className="text-on-surface font-semibold">ML Intern at Deuglo</strong> building AI-driven product features. Experienced across deep learning, full-stack development, and cloud deployment through{' '}
-              <strong className="text-on-surface font-semibold">3 production-grade personal projects</strong>.
+              Final-year CS student at VIT Chennai, currently an <strong className="text-on-surface font-semibold">ML Intern at Deuglo</strong> building AI-driven product features. Experienced across machine learning, full-stack development, and cloud deployment through{' '}
+              <strong className="text-on-surface font-semibold">20+ projects on GitHub</strong>.
             </motion.p>
 
             {/* CTAs */}
@@ -313,7 +312,7 @@ export default function App() {
             className="hidden md:flex items-center justify-center relative">
             <div className="float-anim relative">
               <div className="glow-ring w-44 h-44 rounded-full bg-gradient-to-br from-[#0f0e17] to-[#1e1b30] border border-primary/40 flex items-center justify-center shadow-2xl shadow-primary/20">
-                <span className="font-display font-bold text-6xl text-white tracking-wider">AM</span>
+                <span className="font-display font-bold text-6xl text-white tracking-wider">A</span>
               </div>
               {/* Orbit rings */}
               <svg className="absolute inset-0 w-full h-full orbit-1" viewBox="0 0 176 176">
@@ -742,7 +741,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-5 md:px-10 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/30">
-              <span className="font-display font-bold text-white text-xs">AM</span>
+              <span className="font-display font-bold text-white text-xs">A</span>
             </div>
             <div>
               <p className="font-display font-semibold text-white text-base">Anshuman</p>
