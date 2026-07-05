@@ -14,6 +14,7 @@ export interface Project {
   architecture: string;
   liveUrl: string;
   githubUrl?: string;
+  previewImage?: string;
   category: 'ml' | 'fullstack' | 'devops' | 'all';
   metrics: { label: string; value: string }[];
   year: string;
@@ -162,17 +163,17 @@ export const PROJECTS: Project[] = [
     shortDesc:
       'Full-stack conversational AI agent converting user chats into qualified leads using intent detection, RAG-based knowledge retrieval, and controlled lead capture workflows.',
     tags: ['FastAPI', 'LangGraph', 'React'],
-    fullTags: ['FastAPI', 'LangGraph', 'Python', 'FAISS', 'React', 'RAG', 'LLMs', 'Groq'],
+    fullTags: ['FastAPI', 'LangGraph', 'Python', 'React', 'RAG', 'LLMs', 'Groq'],
     description:
-      'AutoStream is a full-stack conversational AI agent that converts user chats into qualified leads using intent detection, RAG-based knowledge retrieval, and controlled lead capture workflows. Built with FastAPI, LangGraph, and React for a production-style SaaS experience. The agent maintains multi-turn conversation state, retrieves relevant product knowledge from a FAISS vector store, and triggers lead capture at the right moment in the conversation flow.',
+      'AutoStream is a full-stack conversational AI agent that converts user chats into qualified leads using intent detection, RAG-based knowledge retrieval, and controlled lead capture workflows. Built with FastAPI, LangGraph, and React for a production-style SaaS experience. The agent maintains multi-turn conversation state, retrieves relevant product knowledge from a vector store, and triggers lead capture at the right moment in the conversation flow.',
     challenges: [
       'Designing a LangGraph state machine that gracefully handles diverse user intents without falling into loops.',
-      'Building a RAG pipeline with FAISS that retrieves relevant domain knowledge with low latency per turn.',
+      'Building a RAG pipeline that retrieves relevant domain knowledge with low latency per turn.',
       'Triggering lead capture at the optimal conversational moment without feeling intrusive.',
     ],
     achievements: [
       'Multi-turn conversational AI with LangGraph state management and intent detection.',
-      'RAG knowledge retrieval via FAISS for contextually accurate product responses.',
+      'RAG knowledge retrieval for contextually accurate product responses.',
       'Full-stack SaaS-style architecture: FastAPI backend + React frontend.',
     ],
     architecture: 'React Chat UI → FastAPI → LangGraph Agent → FAISS RAG → Lead Capture',
@@ -191,31 +192,32 @@ export const PROJECTS: Project[] = [
     id: 'roadpavement',
     number: '05',
     title: 'PavePro Vision',
-    subtitle: 'AI Road Damage Detection & Forecasting',
+    subtitle: 'YOLOv8 Road Damage Detection & Forecasting',
     shortDesc:
-      'YOLOv8-powered road damage detection platform with hybrid ML models (weather + traffic data) to forecast future pavement degradation. Interactive React digital twin dashboard.',
-    tags: ['YOLOv8', 'FastAPI', 'React'],
-    fullTags: ['YOLOv8', 'Python', 'TypeScript', 'FastAPI', 'React', 'Computer Vision', 'Hybrid ML'],
+      'YOLOv8 trained on RDD2022 dataset (mAP@50: 55%, Precision: 0.608, 20 epochs). Hybrid XGBoost model fusing weather + traffic + vision features for pavement degradation forecasting. React digital twin dashboard.',
+    tags: ['YOLOv8', 'XGBoost', 'FastAPI'],
+    fullTags: ['YOLOv8', 'XGBoost', 'Python', 'TypeScript', 'FastAPI', 'React', 'RDD2022', 'Computer Vision'],
     description:
-      'PavePro Vision is an AI-driven predictive maintenance platform that uses YOLOv8 for real-time road damage detection from images, combined with hybrid ML models incorporating weather and traffic data to forecast future pavement degradation. The system features an interactive React digital twin dashboard powered by a FastAPI backend, giving road authorities actionable maintenance scheduling insights.',
+      'PavePro Vision is an AI-driven road maintenance platform built on real training data. The YOLOv8 detection model was trained for 20 epochs on the RDD2022 road damage dataset, achieving mAP@50 of 55% (up from 15.6% at epoch 1) with precision 0.608 and recall 0.511 — still trending upward at cutoff. A hybrid XGBoost regressor fuses weather, traffic, and vision-derived severity features to forecast future pavement degradation. The system includes a React digital twin dashboard with a FastAPI backend for maintenance scheduling.',
     challenges: [
-      'Fine-tuning YOLOv8 on domain-specific road damage imagery for high precision across damage types.',
-      'Fusing heterogeneous data sources (image detections, weather, traffic) into a single degradation forecast model.',
-      'Building a React digital twin that visually represents road health across a geographic map.',
+      'Training YOLOv8 on the RDD2022 multi-country road damage dataset and managing class imbalance across damage types (D00, D10, D20).',
+      'Fusing heterogeneous inputs (YOLOv8 detections, weather API, traffic volume) into a single XGBoost regression pipeline.',
+      'Model was cut short at 20 epochs (still improving) — a longer training run would push mAP@50 toward ~65–70%.',
     ],
     achievements: [
-      'YOLOv8 computer vision pipeline for real-time road damage classification.',
-      'Hybrid ML forecasting model integrating weather and traffic data for degradation prediction.',
-      'Interactive digital twin dashboard for maintenance scheduling.',
+      'YOLOv8 on RDD2022: mAP@50 = 55.0%, Precision = 0.608, Recall = 0.511 (20 epochs, real training run).',
+      'CNN severity classifier across 5 damage classes: 55% accuracy (vs 20% random baseline).',
+      'Hybrid XGBoost forecaster outperforms weather-only and severity-only baselines.',
     ],
-    architecture: 'React Digital Twin → FastAPI → YOLOv8 Detection → Hybrid ML Forecaster',
+    architecture: 'React Digital Twin → FastAPI → YOLOv8 Detection → XGBoost Hybrid Forecaster',
     liveUrl: 'https://github.com/anshumanvatsa/Road-Pavement-Damage-Prediction',
     githubUrl: 'https://github.com/anshumanvatsa/Road-Pavement-Damage-Prediction',
+    previewImage: '/pave-pro-preview.png',
     category: 'ml',
     metrics: [
-      { label: 'Vision', value: 'YOLOv8' },
-      { label: 'Stack', value: 'TypeScript' },
-      { label: 'Type', value: 'CV + ML' },
+      { label: 'mAP@50', value: '55%' },
+      { label: 'Precision', value: '0.608' },
+      { label: 'Dataset', value: 'RDD2022' },
     ],
     year: '2025',
     status: 'open-source',
@@ -460,7 +462,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: 'databases',
     category: 'Databases',
-    techs: ['PostgreSQL', 'Redis', 'Supabase', 'ChromaDB', 'FAISS'],
+    techs: ['PostgreSQL', 'MongoDB', 'Firebase', 'Redis', 'Supabase', 'Neo4j', 'ChromaDB'],
     icon: '🗄️',
   },
   {

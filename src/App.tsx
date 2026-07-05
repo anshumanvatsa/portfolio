@@ -415,6 +415,13 @@ export default function App() {
                         </div>
                       </div>
 
+                      {/* Preview image (if any) */}
+                      {proj.previewImage && (
+                        <div className="md:col-span-12 -mx-1 -mt-1 mb-2 rounded-xl overflow-hidden border border-surface-container-high">
+                          <img src={proj.previewImage} alt={`${proj.title} preview`}
+                            className="w-full h-40 object-cover object-top opacity-90 hover:opacity-100 transition-opacity" />
+                        </div>
+                      )}
                       {/* Description + metrics + tags */}
                       <div className="md:col-span-5">
                         <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-4">{proj.shortDesc}</p>
