@@ -501,7 +501,7 @@ export default function MlPlayground() {
                       <div className="flex flex-col gap-0.5 text-[11px]">
                         <div className="flex justify-between">
                           <span className="text-neutral-500">Validation metric:</span>
-                          <span className="text-neutral-300">ROC-AUC = 0.89</span>
+                          <span className="text-neutral-300">ROC-AUC ≈ 0.89 (demo)</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-neutral-500">Imputed entries:</span>

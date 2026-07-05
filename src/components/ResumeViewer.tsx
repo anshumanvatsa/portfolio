@@ -17,7 +17,7 @@ const RESUME = {
   github: 'github.com/anshumanvatsa',
   linkedin: 'linkedin.com/in/anshuman-vatsa-mishra',
   summary:
-    'Final-year CS undergraduate at VIT Chennai, currently an ML Intern at Deuglo building AI-driven product features. Experienced across deep learning, full-stack development, and cloud deployment through production-grade personal projects.',
+    'Final-year CS undergraduate at VIT Chennai, currently an ML Intern at Deuglo building AI-driven product features. Experienced across machine learning, full-stack development, and cloud deployment through production-grade personal projects.',
   skills: [
     { label: 'Programming', items: 'Python, C++, Java, JavaScript, TypeScript' },
     { label: 'AI / ML', items: 'PyTorch, TensorFlow, Scikit-learn, XGBoost, Bi-LSTM, Transformers, LLMs, RAG, Prompt Engineering' },

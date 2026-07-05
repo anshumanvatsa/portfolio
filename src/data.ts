@@ -1,4 +1,4 @@
-// Anshuman Mishra — Portfolio Data (verified from GitHub + actual resume)
+// Anshuman — Portfolio Data (verified from GitHub + actual resume)
 
 export interface Project {
   id: string;
@@ -482,15 +482,29 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 export const CERTIFICATIONS: Certification[] = [
   {
     id: 'c1',
-    name: 'IBM DevOps Certifications',
-    issuer: 'IBM — Fundamentals, Agile & Design Thinking, DevOps Training',
+    name: 'IBM DevOps Fundamentals',
+    issuer: 'IBM',
     date: '2025',
     badge: '🏅',
   },
   {
     id: 'c2',
+    name: 'IBM Agile & Design Thinking',
+    issuer: 'IBM',
+    date: '2025',
+    badge: '🏅',
+  },
+  {
+    id: 'c3',
+    name: 'IBM DevOps Training',
+    issuer: 'IBM',
+    date: '2025',
+    badge: '🏅',
+  },
+  {
+    id: 'c4',
     name: 'Machine Learning I',
-    issuer: 'Columbia+ — Regression, classification, model evaluation',
+    issuer: 'Columbia+',
     date: '2025',
     badge: '🧠',
   },
