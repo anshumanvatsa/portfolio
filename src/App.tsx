@@ -23,7 +23,7 @@ const STATS = [
   { label: 'Technologies', value: '20+', icon: Layers, color: '#f59e0b' },
 ];
 
-const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'Graph Theorist.', 'Open Source Builder.'];
+const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'DevOps Engineer.', 'Open Source Builder.'];
 
 // Animated number counter
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -254,8 +254,16 @@ export default function App() {
 
             {/* Name */}
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}>
-              <h1 className="font-display font-bold text-5xl md:text-[72px] leading-[1.05] tracking-tight text-on-surface mb-1">
-                <span className="gradient-text">Anshuman.</span>
+              <h1 className="font-display font-bold text-5xl md:text-[72px] leading-[1.05] tracking-tight mb-1">
+                {'Anshuman.'.split('').map((char, i) => (
+                  <motion.span
+                    key={i}
+                    className="gradient-text inline-block"
+                    initial={{ opacity: 0, y: 20, rotateX: -40 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{ delay: 0.25 + i * 0.045, type: 'spring', stiffness: 280, damping: 18 }}
+                  >{char === '.' ? char : char}</motion.span>
+                ))}
               </h1>
             </motion.div>
 
@@ -417,9 +425,13 @@ export default function App() {
 
                       {/* Preview image (if any) */}
                       {proj.previewImage && (
-                        <div className="md:col-span-12 -mx-1 -mt-1 mb-2 rounded-xl overflow-hidden border border-surface-container-high">
-                          <img src={proj.previewImage} alt={`${proj.title} preview`}
-                            className="w-full h-40 object-cover object-top opacity-90 hover:opacity-100 transition-opacity" />
+                        <div className="md:col-span-12 -mx-1 -mt-1 mb-3 rounded-xl overflow-hidden border border-surface-container-high bg-[#0a0a12]">
+                          <img
+                            src={proj.previewImage}
+                            alt={`${proj.title} preview`}
+                            className="w-full h-44 object-cover object-center"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                          />
                         </div>
                       )}
                       {/* Description + metrics + tags */}
