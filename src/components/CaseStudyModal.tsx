@@ -116,6 +116,27 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
                 {project.description}
               </p>
 
+              {/* Preview Image */}
+              {project.previewImage && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15, type: 'spring', stiffness: 200 }}
+                  className="rounded-2xl overflow-hidden border border-surface-container shadow-lg"
+                >
+                  <img
+                    src={project.previewImage}
+                    alt={`${project.title} — model output preview`}
+                    className="w-full object-cover"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <div className="bg-surface-container-low px-4 py-2 border-t border-surface-container">
+                    <p className="font-mono text-[10px] text-secondary uppercase tracking-widest">
+                      Model Output · YOLOv8 Detection on RDD2022
+                    </p>
+                  </div>
+                </motion.div>
+              )}
               {/* Animated Metrics */}
               <div>
                 <div className="flex items-center gap-2 mb-4">
