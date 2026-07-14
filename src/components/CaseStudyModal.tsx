@@ -132,7 +132,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
                   />
                   <div className="bg-surface-container-low px-4 py-2 border-t border-surface-container">
                     <p className="font-mono text-[10px] text-secondary uppercase tracking-widest">
-                      Model Output · YOLOv8 Detection on RDD2022
+                      {project.subtitle} · Preview
                     </p>
                   </div>
                 </motion.div>

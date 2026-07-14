@@ -80,6 +80,7 @@ export const PROJECTS: Project[] = [
     architecture: 'React Dashboard → FastAPI → PyTorch LSTM / XGBoost → PostgreSQL',
     liveUrl: 'https://care-predict-ai.vercel.app',
     githubUrl: 'https://github.com/anshumanvatsa/care-predict-ai-v1',
+    previewImage: '/carepredict-preview.png',
     category: 'ml',
     metrics: [
       { label: 'Conditions', value: '4' },
@@ -113,6 +114,7 @@ export const PROJECTS: Project[] = [
     architecture: 'React Dashboard → WebSocket Server → Docker → AWS EC2 → Live Metrics',
     liveUrl: 'http://cloudpilot.13.60.57.168.sslip.io',
     githubUrl: 'https://github.com/anshumanvatsa/cloudpilot-devops-platform',
+    previewImage: '/cloudpilot-preview.png',
     category: 'devops',
     metrics: [
       { label: 'Auth', value: 'JWT' },
@@ -146,6 +148,7 @@ export const PROJECTS: Project[] = [
     architecture: 'Next.js 14 → Leaflet.js Map → Supabase Real-time DB → Admin Panel',
     liveUrl: 'https://varuna001.vercel.app',
     githubUrl: 'https://github.com/anshumanvatsa/Varuna',
+    previewImage: '/varuna-preview.png',
     category: 'fullstack',
     metrics: [
       { label: 'Stack', value: 'Next 14' },
@@ -179,6 +182,7 @@ export const PROJECTS: Project[] = [
     architecture: 'React Chat UI → FastAPI → LangGraph Agent → FAISS RAG → Lead Capture',
     liveUrl: 'https://github.com/anshumanvatsa/AutoStream-AI-Agent',
     githubUrl: 'https://github.com/anshumanvatsa/AutoStream-AI-Agent',
+    previewImage: '/autostream-preview.png',
     category: 'ml',
     metrics: [
       { label: 'Agent', value: 'LangGraph' },
@@ -246,6 +250,7 @@ export const PROJECTS: Project[] = [
     architecture: 'IoT Sensors → FastAPI WebSocket → React Digital Twin Dashboard → Risk Analytics',
     liveUrl: 'https://github.com/anshumanvatsa/construction-digital-twin',
     githubUrl: 'https://github.com/anshumanvatsa/construction-digital-twin',
+    previewImage: '/construction-preview.png',
     category: 'fullstack',
     metrics: [
       { label: 'Stack', value: 'TypeScript' },
@@ -279,6 +284,7 @@ export const PROJECTS: Project[] = [
     architecture: 'React UI → FastAPI → AES-256-GCM Engine → RBAC → Audit Log → Docker',
     liveUrl: 'https://github.com/anshumanvatsa/Selective-Encryption',
     githubUrl: 'https://github.com/anshumanvatsa/Selective-Encryption',
+    previewImage: '/encryption-preview.png',
     category: 'fullstack',
     metrics: [
       { label: 'Cipher', value: 'AES-256' },
@@ -312,11 +318,12 @@ export const PROJECTS: Project[] = [
     architecture: 'UCI Dataset → EDA + Feature Engineering → Model Pipeline → SHAP Analysis → Reports',
     liveUrl: 'https://github.com/anshumanvatsa/Heart-Disease-Predictor',
     githubUrl: 'https://github.com/anshumanvatsa/Heart-Disease-Predictor',
+    previewImage: '/heartdisease-preview.png',
     category: 'ml',
     metrics: [
-      { label: 'Models', value: '4' },
+      { label: 'Best Acc.', value: '89%' },
+      { label: 'Model', value: 'XGBoost' },
       { label: 'XAI', value: 'SHAP' },
-      { label: 'Dataset', value: 'UCI' },
     ],
     year: '2024',
     status: 'open-source',
@@ -345,6 +352,7 @@ export const PROJECTS: Project[] = [
     architecture: 'PDF Upload → LangChain Parser → ChromaDB/FAISS Embeddings → LLM → Grounded Answer',
     liveUrl: 'https://github.com/anshumanvatsa/Documind---rag',
     githubUrl: 'https://github.com/anshumanvatsa/Documind---rag',
+    previewImage: '/documind-preview.png',
     category: 'ml',
     metrics: [
       { label: 'Type', value: 'RAG' },
@@ -378,6 +386,7 @@ export const PROJECTS: Project[] = [
     architecture: 'Video Feed → YOLOv8 Inference → FastAPI → React Dashboard → Compliance Reports',
     liveUrl: 'https://github.com/anshumanvatsa/safety-sparkle-vision',
     githubUrl: 'https://github.com/anshumanvatsa/safety-sparkle-vision',
+    previewImage: '/safety-preview.png',
     category: 'ml',
     metrics: [
       { label: 'Vision', value: 'YOLOv8' },
