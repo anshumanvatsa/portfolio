@@ -57,40 +57,8 @@ export interface Achievement {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'artful-heaven',
-    number: '01',
-    title: 'Artful Heaven',
-    subtitle: 'Premium E-Commerce Art Platform',
-    shortDesc: 'A highly aesthetic, UI/UX-heavy digital art and e-commerce platform featuring glassmorphism, fluid animations, and premium dark-mode styling.',
-    tags: ['React', 'UI/UX', 'Tailwind'],
-    fullTags: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'UI/UX Design', 'Frontend', 'E-Commerce'],
-    description: 'Artful Heaven is a premium digital art and e-commerce platform with an extreme focus on UI/UX design. It features immersive glassmorphism, dynamic routing, and fluid micro-animations that make discovering art feel luxurious. Built with modern React and Tailwind CSS, it implements complex interactive states and seamless page transitions.',
-    challenges: [
-      'Designing an ultra-premium dark theme using glassmorphic UI elements and subtle neon accents.',
-      'Implementing smooth micro-animations for interactive elements without compromising performance.',
-      'Structuring a scalable component system for an e-commerce layout.'
-    ],
-    achievements: [
-      'Highly aesthetic UI/UX design that elevates the standard of frontend presentation.',
-      'Responsive, mobile-first layouts with complex grid systems.',
-      'Optimized asset delivery for high-resolution digital art.'
-    ],
-    architecture: 'React Frontend -> Framer Motion Animations -> Custom UI Design System',
-    liveUrl: 'http://13.60.57.168:4007',
-    githubUrl: 'https://github.com/anshumanvatsa/artful-heaven',
-    previewImage: '/artful-heaven-preview.png',
-    category: 'fullstack',
-    metrics: [
-      { label: 'Type', value: 'E-Commerce' },
-      { label: 'Design', value: 'UI/UX' },
-      { label: 'Status', value: 'Building' }
-    ],
-    year: '2025',
-    status: 'live'
-  },
-  {
     id: 'roadpavement',
-    number: '02',
+    number: '01',
     title: 'PavePro Vision',
     subtitle: 'YOLOv8 Road Damage Detection & Forecasting',
     shortDesc:
@@ -124,7 +92,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'multi-platform-engagement',
-    number: '03',
+    number: '02',
     title: 'Multi-Platform Social Media Predictor',
     subtitle: 'LightGBM Engagement Forecasting',
     shortDesc:
@@ -158,7 +126,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'carepredict',
-    number: '04',
+    number: '03',
     title: 'CarePredictAI',
     subtitle: 'Clinical Risk Prediction System',
     shortDesc:
@@ -192,7 +160,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'varuna',
-    number: '05',
+    number: '04',
     title: 'VARUNA',
     subtitle: 'Live Ocean Hazard Reporting Platform',
     shortDesc:
@@ -226,7 +194,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'bharat-truth-lens',
-    number: '06',
+    number: '05',
     title: 'Bharat Truth Lens',
     subtitle: 'AI-Powered Fake News Detection',
     shortDesc:
@@ -260,7 +228,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'cloudpilot',
-    number: '07',
+    number: '06',
     title: 'CloudPilot',
     subtitle: 'DevOps Monitoring Dashboard',
     shortDesc:
@@ -294,7 +262,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'construction',
-    number: '08',
+    number: '07',
     title: 'Construction Digital Twin',
     subtitle: 'Real-time IoT Site Monitoring Platform',
     shortDesc:
@@ -328,7 +296,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'social-media-pre',
-    number: '09',
+    number: '08',
     title: 'Social Media Predictor',
     subtitle: 'Pre-Publication Engagement Analytics',
     shortDesc:
@@ -362,7 +330,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'autostream',
-    number: '10',
+    number: '09',
     title: 'AutoStream AI Agent',
     subtitle: 'Conversational Lead-Gen AI Agent',
     shortDesc:
@@ -396,7 +364,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'heartdisease',
-    number: '11',
+    number: '10',
     title: 'Heart Disease Predictor',
     subtitle: 'Multi-Model ML Classification Pipeline',
     shortDesc:
@@ -430,7 +398,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'documind',
-    number: '12',
+    number: '11',
     title: 'DocuMind RAG',
     subtitle: 'Document Q&A Chatbot with RAG',
     shortDesc:
@@ -464,7 +432,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'selective-encryption',
-    number: '13',
+    number: '12',
     title: 'Selective Encryption System',
     subtitle: 'AES-256-GCM Security Platform',
     shortDesc:
@@ -498,7 +466,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'medicine-safety',
-    number: '14',
+    number: '13',
     title: 'DrugSafe AI',
     subtitle: 'Medicine Safety Predictor',
     shortDesc:
@@ -532,7 +500,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'safety-vision',
-    number: '15',
+    number: '14',
     title: 'Safety Sparkle Vision',
     subtitle: 'Workplace PPE Safety Detection',
     shortDesc:
@@ -563,6 +531,38 @@ export const PROJECTS: Project[] = [
     ],
     year: '2025',
     status: 'open-source',
+  },
+  {
+    id: 'artful-heaven',
+    number: '15',
+    title: 'Artful Heaven',
+    subtitle: 'Premium E-Commerce Art Platform',
+    shortDesc: 'A highly aesthetic, UI/UX-heavy digital art and e-commerce platform featuring glassmorphism, fluid animations, and premium dark-mode styling.',
+    tags: ['React', 'UI/UX', 'Tailwind'],
+    fullTags: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'UI/UX Design', 'Frontend', 'E-Commerce'],
+    description: 'Artful Heaven is a premium digital art and e-commerce platform with an extreme focus on UI/UX design. It features immersive glassmorphism, dynamic routing, and fluid micro-animations that make discovering art feel luxurious. Built with modern React and Tailwind CSS, it implements complex interactive states and seamless page transitions.',
+    challenges: [
+      'Designing an ultra-premium dark theme using glassmorphic UI elements and subtle neon accents.',
+      'Implementing smooth micro-animations for interactive elements without compromising performance.',
+      'Structuring a scalable component system for an e-commerce layout.'
+    ],
+    achievements: [
+      'Highly aesthetic UI/UX design that elevates the standard of frontend presentation.',
+      'Responsive, mobile-first layouts with complex grid systems.',
+      'Optimized asset delivery for high-resolution digital art.'
+    ],
+    architecture: 'React Frontend -> Framer Motion Animations -> Custom UI Design System',
+    liveUrl: 'http://13.60.57.168:4007',
+    githubUrl: 'https://github.com/anshumanvatsa/artful-heaven',
+    previewImage: '/artful-heaven-preview.png',
+    category: 'fullstack',
+    metrics: [
+      { label: 'Type', value: 'E-Commerce' },
+      { label: 'Design', value: 'UI/UX' },
+      { label: 'Status', value: 'Building' }
+    ],
+    year: '2025',
+    status: 'live'
   }
 ];
 
