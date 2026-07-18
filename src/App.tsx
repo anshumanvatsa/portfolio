@@ -425,11 +425,11 @@ export default function App() {
 
                       {/* Preview image (if any) */}
                       {proj.previewImage && (
-                        <div className="md:col-span-12 -mx-1 -mt-1 mb-3 rounded-xl overflow-hidden border border-surface-container-high bg-[#0a0a12]">
+                        <div className="md:col-span-12 -mx-1 -mt-1 mb-3 rounded-xl overflow-hidden border border-surface-container-high bg-[#0a0a12] aspect-[21/9]">
                           <img
-                            src={proj.previewImage}
+                            src={`${import.meta.env.BASE_URL}${proj.previewImage.slice(1)}`}
                             alt={`${proj.title} preview`}
-                            className="w-full h-44 object-cover object-center"
+                            className="w-full h-full object-cover object-center"
                             onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                           />
                         </div>

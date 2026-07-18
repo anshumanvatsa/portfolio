@@ -57,8 +57,40 @@ export interface Achievement {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'roadpavement',
+    id: 'artful-heaven',
     number: '01',
+    title: 'Artful Heaven',
+    subtitle: 'Premium E-Commerce Art Platform',
+    shortDesc: 'A highly aesthetic, UI/UX-heavy digital art and e-commerce platform featuring glassmorphism, fluid animations, and premium dark-mode styling.',
+    tags: ['React', 'UI/UX', 'Tailwind'],
+    fullTags: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'UI/UX Design', 'Frontend', 'E-Commerce'],
+    description: 'Artful Heaven is a premium digital art and e-commerce platform with an extreme focus on UI/UX design. It features immersive glassmorphism, dynamic routing, and fluid micro-animations that make discovering art feel luxurious. Built with modern React and Tailwind CSS, it implements complex interactive states and seamless page transitions.',
+    challenges: [
+      'Designing an ultra-premium dark theme using glassmorphic UI elements and subtle neon accents.',
+      'Implementing smooth micro-animations for interactive elements without compromising performance.',
+      'Structuring a scalable component system for an e-commerce layout.'
+    ],
+    achievements: [
+      'Highly aesthetic UI/UX design that elevates the standard of frontend presentation.',
+      'Responsive, mobile-first layouts with complex grid systems.',
+      'Optimized asset delivery for high-resolution digital art.'
+    ],
+    architecture: 'React Frontend -> Framer Motion Animations -> Custom UI Design System',
+    liveUrl: 'http://13.60.57.168:4007',
+    githubUrl: 'https://github.com/anshumanvatsa/artful-heaven',
+    previewImage: '/artful-heaven-preview.png',
+    category: 'fullstack',
+    metrics: [
+      { label: 'Type', value: 'E-Commerce' },
+      { label: 'Design', value: 'UI/UX' },
+      { label: 'Status', value: 'Building' }
+    ],
+    year: '2025',
+    status: 'live'
+  },
+  {
+    id: 'roadpavement',
+    number: '02',
     title: 'PavePro Vision',
     subtitle: 'YOLOv8 Road Damage Detection & Forecasting',
     shortDesc:
@@ -92,7 +124,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'multi-platform-engagement',
-    number: '02',
+    number: '03',
     title: 'Multi-Platform Social Media Predictor',
     subtitle: 'LightGBM Engagement Forecasting',
     shortDesc:
@@ -126,7 +158,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'carepredict',
-    number: '03',
+    number: '04',
     title: 'CarePredictAI',
     subtitle: 'Clinical Risk Prediction System',
     shortDesc:
@@ -160,7 +192,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'varuna',
-    number: '04',
+    number: '05',
     title: 'VARUNA',
     subtitle: 'Live Ocean Hazard Reporting Platform',
     shortDesc:
@@ -194,7 +226,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'bharat-truth-lens',
-    number: '05',
+    number: '06',
     title: 'Bharat Truth Lens',
     subtitle: 'AI-Powered Fake News Detection',
     shortDesc:
@@ -228,7 +260,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'cloudpilot',
-    number: '06',
+    number: '07',
     title: 'CloudPilot',
     subtitle: 'DevOps Monitoring Dashboard',
     shortDesc:
@@ -262,7 +294,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'construction',
-    number: '07',
+    number: '08',
     title: 'Construction Digital Twin',
     subtitle: 'Real-time IoT Site Monitoring Platform',
     shortDesc:
@@ -295,8 +327,42 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
+    id: 'social-media-pre',
+    number: '09',
+    title: 'Social Media Predictor',
+    subtitle: 'Pre-Publication Engagement Analytics',
+    shortDesc:
+      'Engagement predictor for social media posts trained on 800K+ real posts, explaining predictions in plain English using SHAP.',
+    tags: ['Python', 'Random Forest', 'SHAP'],
+    fullTags: ['Python', 'Random Forest', 'SHAP', 'Machine Learning', 'Analytics'],
+    description:
+      'A pre-publication engagement predictor designed for content managers. Before hitting publish, users receive a HIGH or LOW engagement prediction with a confidence score. The system is trained on 800K+ posts and accepts only features known before posting (platform, post type, time, hashtags, media). It uses SHAP to provide 3 plain-English reasons for the prediction and 1 actionable recommendation.',
+    challenges: [
+      'Training a Random Forest model on 800,000 rows of social media data.',
+      'Translating complex SHAP values into actionable, plain-English recommendations for non-technical content managers.',
+      'Restricting the feature set strictly to data available before a post is published.',
+    ],
+    achievements: [
+      'Achieved F1=0.63 and AUC-ROC=0.64 using strictly pre-publication features.',
+      'Generated SHAP-driven plain-English explanations for model predictions.',
+      'Built a practical tool directly applicable to social media content strategy workflows.',
+    ],
+    architecture: '800K Dataset → Random Forest Model → SHAP Explainer → Plain-English Output',
+    liveUrl: 'https://github.com/anshumanvatsa/Social-Media-engagement-prediction',
+    githubUrl: 'https://github.com/anshumanvatsa/Social-Media-engagement-prediction',
+    previewImage: '/social-media-pre-preview.png',
+    category: 'ml',
+    metrics: [
+      { label: 'F1 Score', value: '0.63' },
+      { label: 'AUC-ROC', value: '0.64' },
+      { label: 'XAI', value: 'SHAP' },
+    ],
+    year: '2025',
+    status: 'open-source',
+  },
+  {
     id: 'autostream',
-    number: '08',
+    number: '10',
     title: 'AutoStream AI Agent',
     subtitle: 'Conversational Lead-Gen AI Agent',
     shortDesc:
@@ -330,7 +396,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'heartdisease',
-    number: '09',
+    number: '11',
     title: 'Heart Disease Predictor',
     subtitle: 'Multi-Model ML Classification Pipeline',
     shortDesc:
@@ -364,7 +430,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'documind',
-    number: '10',
+    number: '12',
     title: 'DocuMind RAG',
     subtitle: 'Document Q&A Chatbot with RAG',
     shortDesc:
@@ -398,7 +464,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'selective-encryption',
-    number: '11',
+    number: '13',
     title: 'Selective Encryption System',
     subtitle: 'AES-256-GCM Security Platform',
     shortDesc:
@@ -432,7 +498,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'medicine-safety',
-    number: '12',
+    number: '14',
     title: 'DrugSafe AI',
     subtitle: 'Medicine Safety Predictor',
     shortDesc:
@@ -465,42 +531,8 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'disease-frontend',
-    number: '13',
-    title: 'Disease Prediction Frontend',
-    subtitle: 'Healthcare Risk Dashboard',
-    shortDesc:
-      'A production-ready React application for AI-driven patient deterioration prediction featuring a 3-step smart upload flow.',
-    tags: ['React 18', 'TypeScript', 'Tailwind'],
-    fullTags: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'shadcn/ui', 'Recharts', 'Supabase'],
-    description:
-      'A production-ready React application built as the frontend for an AI-driven patient deterioration prediction engine. Designed specifically for healthcare professionals, the dashboard features a smart 3-step CSV upload flow, an interactive 4-tab results modal (Summary, Patient List, Metrics, Download), and comprehensive risk visualizations using Recharts and shadcn/ui components.',
-    challenges: [
-      'Designing a clinician-friendly UI that translates complex ML risk predictions into actionable insights.',
-      'Implementing a robust CSV upload and validation flow using React hooks and state management.',
-      'Integrating dark/light mode and complex data visualization charts with persistent preferences.',
-    ],
-    achievements: [
-      'Built a seamless 3-step smart upload workflow for clinical data.',
-      'Implemented real-time risk visualization with animated progress tracking and clinical terminology.',
-      'Integrated Supabase for user authentication and management.',
-    ],
-    architecture: 'React 18 + Vite → shadcn/ui + Tailwind → Recharts Data Viz',
-    liveUrl: 'https://github.com/anshumanvatsa/disease_prediction_frontend',
-    githubUrl: 'https://github.com/anshumanvatsa/disease_prediction_frontend',
-    previewImage: '/disease-prediction-preview.png',
-    category: 'fullstack',
-    metrics: [
-      { label: 'Stack', value: 'React 18' },
-      { label: 'UI', value: 'shadcn/ui' },
-      { label: 'Auth', value: 'Supabase' },
-    ],
-    year: '2025',
-    status: 'open-source',
-  },
-  {
     id: 'safety-vision',
-    number: '14',
+    number: '15',
     title: 'Safety Sparkle Vision',
     subtitle: 'Workplace PPE Safety Detection',
     shortDesc:
@@ -528,40 +560,6 @@ export const PROJECTS: Project[] = [
       { label: 'Vision', value: 'YOLOv8' },
       { label: 'Stack', value: 'TypeScript' },
       { label: 'Type', value: 'Safety AI' },
-    ],
-    year: '2025',
-    status: 'open-source',
-  },
-  {
-    id: 'social-media-pre',
-    number: '15',
-    title: 'Social Media Predictor',
-    subtitle: 'Pre-Publication Engagement Analytics',
-    shortDesc:
-      'Engagement predictor for social media posts trained on 800K+ real posts, explaining predictions in plain English using SHAP.',
-    tags: ['Python', 'Random Forest', 'SHAP'],
-    fullTags: ['Python', 'Random Forest', 'SHAP', 'Machine Learning', 'Analytics'],
-    description:
-      'A pre-publication engagement predictor designed for content managers. Before hitting publish, users receive a HIGH or LOW engagement prediction with a confidence score. The system is trained on 800K+ posts and accepts only features known before posting (platform, post type, time, hashtags, media). It uses SHAP to provide 3 plain-English reasons for the prediction and 1 actionable recommendation.',
-    challenges: [
-      'Training a Random Forest model on 800,000 rows of social media data.',
-      'Translating complex SHAP values into actionable, plain-English recommendations for non-technical content managers.',
-      'Restricting the feature set strictly to data available before a post is published.',
-    ],
-    achievements: [
-      'Achieved F1=0.63 and AUC-ROC=0.64 using strictly pre-publication features.',
-      'Generated SHAP-driven plain-English explanations for model predictions.',
-      'Built a practical tool directly applicable to social media content strategy workflows.',
-    ],
-    architecture: '800K Dataset → Random Forest Model → SHAP Explainer → Plain-English Output',
-    liveUrl: 'https://github.com/anshumanvatsa/Social-Media-engagement-prediction',
-    githubUrl: 'https://github.com/anshumanvatsa/Social-Media-engagement-prediction',
-    previewImage: '/social-media-pre-preview.png',
-    category: 'ml',
-    metrics: [
-      { label: 'F1 Score', value: '0.63' },
-      { label: 'AUC-ROC', value: '0.64' },
-      { label: 'XAI', value: 'SHAP' },
     ],
     year: '2025',
     status: 'open-source',

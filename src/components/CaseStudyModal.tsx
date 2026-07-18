@@ -125,7 +125,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
                   className="rounded-2xl overflow-hidden border border-surface-container shadow-lg"
                 >
                   <img
-                    src={project.previewImage}
+                    src={`${import.meta.env.BASE_URL}${project.previewImage.slice(1)}`}
                     alt={`${project.title} — model output preview`}
                     className="w-full object-cover"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
