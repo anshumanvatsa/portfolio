@@ -17,10 +17,10 @@ interface Message {
 }
 
 const STATS = [
-  { label: 'GitHub Projects', value: '20+', icon: Zap, color: '#6c47ff' },
-  { label: 'Training Rows', value: '800K+', icon: Cpu, color: '#a855f7' },
-  { label: 'CGPA', value: '8.83', icon: Award, color: '#06b6d4' },
-  { label: 'Technologies', value: '20+', icon: Layers, color: '#f59e0b' },
+  { label: 'GitHub Projects', value: '20+', icon: Zap, color: '#fbbf24' },
+  { label: 'Training Rows', value: '800K+', icon: Cpu, color: '#f59e0b' },
+  { label: 'CGPA', value: '8.83', icon: Award, color: '#d97706' },
+  { label: 'Technologies', value: '20+', icon: Layers, color: '#fcd34d' },
 ];
 
 const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'ML Engineer · Full-Stack Developer · DevOps Engineer.', 'Open Source Builder.'];
@@ -173,12 +173,12 @@ export default function App() {
   };
 
   return (
-    <div className="font-sans min-h-screen bg-white text-on-surface antialiased flex flex-col">
+    <div className="font-sans min-h-screen bg-surface-container text-on-surface antialiased flex flex-col">
       {/* Top accent */}
       <div className="h-[3px] accent-line flex-shrink-0 w-full" />
 
       {/* ═══ NAV ═══ */}
-      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navScrolled ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-surface-container' : 'bg-transparent'}`}>
+      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navScrolled ? 'bg-surface-container/95 backdrop-blur-xl shadow-sm border-b border-surface-container' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-5 md:px-10 flex justify-between items-center h-16">
           {/* Logo */}
           <motion.button
@@ -222,7 +222,7 @@ export default function App() {
         <AnimatePresence>
           {menuOpen && (
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-              className="md:hidden bg-white border-b border-surface-container px-5 pb-4 flex flex-col gap-3">
+              className="md:hidden bg-surface-container border-b border-surface-container px-5 pb-4 flex flex-col gap-3">
               {[{ label: 'Work', id: 'work' }, { label: 'AI Lab', id: 'lab' }, { label: 'About', id: 'about' }, { label: 'Contact', id: 'contact' }].map(l => (
                 <a key={l.id} href={`#${l.id}`} onClick={() => setMenuOpen(false)}
                   className="font-display text-sm text-on-surface font-medium py-1.5 border-b border-surface-container last:border-0">{l.label}</a>
@@ -242,13 +242,13 @@ export default function App() {
         <section className="hero-mesh pt-6 pb-20 md:pt-10 md:pb-36 flex flex-col md:flex-row md:items-center md:justify-between gap-14 divider relative overflow-hidden">
           {/* Decorative blobs */}
           <div className="pointer-events-none absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-primary/10 to-accent/5 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-0 left-1/3 w-64 h-64 rounded-full bg-purple-400/5 blur-3xl" />
+          <div className="pointer-events-none absolute bottom-0 left-1/3 w-64 h-64 rounded-full bg-amber-400/5 blur-3xl" />
 
           <div className="flex flex-col gap-7 max-w-2xl relative z-10">
             {/* Status pill */}
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-              className="w-fit flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-medium">
-              <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+              className="w-fit flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium">
+              <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-400 inline-block" />
               Open to Opportunities · Internships & Full-time
             </motion.div>
 
@@ -289,7 +289,7 @@ export default function App() {
                 View My Work <ArrowUpRight className="w-4 h-4" />
               </motion.a>
               <motion.button onClick={() => setIsResumeOpen(true)} whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 border border-on-surface/15 text-on-surface bg-white px-6 py-3.5 rounded-xl font-display font-semibold text-sm transition-all hover:border-primary/50 hover:text-primary"
+                className="inline-flex items-center gap-2 border border-on-surface/15 text-on-surface bg-surface-container px-6 py-3.5 rounded-xl font-display font-semibold text-sm transition-all hover:border-primary/50 hover:text-primary"
                 id="hero-resume-btn">
                 <Download className="w-4 h-4 text-primary" /> Resume
               </motion.button>
@@ -341,7 +341,7 @@ export default function App() {
               const Icon = stat.icon;
               return (
                 <motion.div key={stat.label} variants={item}
-                  className="lift flex flex-col gap-1.5 p-5 rounded-2xl border border-surface-container bg-white hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all">
+                  className="lift flex flex-col gap-1.5 p-5 rounded-2xl border border-surface-container bg-surface-container hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${stat.color}15` }}>
                       <Icon className="w-4 h-4" style={{ color: stat.color }} />
@@ -373,7 +373,7 @@ export default function App() {
                 { label: 'DevOps', id: 'devops' },
               ].map(tab => (
                 <button key={tab.id} onClick={() => setSelectedCategory(tab.id)}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-lg font-display text-xs font-medium transition-all duration-200 ${selectedCategory === tab.id ? 'bg-white text-primary shadow-sm border border-primary/10' : 'text-secondary hover:text-on-surface'}`}>
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-lg font-display text-xs font-medium transition-all duration-200 ${selectedCategory === tab.id ? 'bg-surface-container text-primary shadow-sm border border-primary/10' : 'text-secondary hover:text-on-surface'}`}>
                   {tab.label}
                   <span className={`min-w-[18px] text-center text-[10px] font-bold px-1.5 py-0.5 rounded-full ${selectedCategory === tab.id ? 'bg-primary/10 text-primary' : 'bg-surface-container-high text-secondary'}`}>
                     {catCounts[tab.id as keyof typeof catCounts]}
@@ -533,7 +533,7 @@ export default function App() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {ACHIEVEMENTS.map(a => (
               <motion.div key={a.id} variants={item}
-                className="lift p-5 rounded-2xl border border-surface-container bg-white hover:border-primary/20 group">
+                className="lift p-5 rounded-2xl border border-surface-container bg-surface-container hover:border-primary/20 group">
                 <div className="text-2xl mb-3">{a.icon}</div>
                 <h4 className="font-display font-semibold text-sm text-on-surface mb-1 group-hover:text-primary transition-colors">{a.title}</h4>
                 <p className="font-sans text-xs text-secondary leading-relaxed mb-2">{a.body}</p>
@@ -578,7 +578,7 @@ export default function App() {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {CERTIFICATIONS.map(c => (
-                  <div key={c.id} className="lift flex items-start gap-3 p-4 rounded-xl border border-surface-container bg-white hover:border-primary/20">
+                  <div key={c.id} className="lift flex items-start gap-3 p-4 rounded-xl border border-surface-container bg-surface-container hover:border-primary/20">
                     <span className="text-xl flex-shrink-0">{c.badge}</span>
                     <div>
                       <p className="font-display font-semibold text-xs text-on-surface">{c.name}</p>
@@ -665,13 +665,13 @@ export default function App() {
                   ].map(s => (
                     <motion.a key={s.label} href={s.href} target="_blank" rel="noreferrer"
                       whileHover={{ y: -3 }} whileTap={{ scale: 0.96 }}
-                      className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-display font-medium text-secondary hover:text-primary hover:border-primary/30 bg-white transition-all">
+                      className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-display font-medium text-secondary hover:text-primary hover:border-primary/30 bg-surface-container transition-all">
                       {s.icon} {s.label}
                     </motion.a>
                   ))}
                   <motion.button whileHover={{ y: -3 }} whileTap={{ scale: 0.96 }}
                     onClick={() => setIsResumeOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-display font-medium text-secondary hover:text-primary hover:border-primary/30 bg-white transition-all">
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-surface-container text-xs font-display font-medium text-secondary hover:text-primary hover:border-primary/30 bg-surface-container transition-all">
                     <Download className="w-4 h-4" /> Resume
                   </motion.button>
                 </div>
@@ -693,7 +693,7 @@ export default function App() {
                     className="flex flex-col gap-4 max-h-[400px] overflow-y-auto pr-1">
                     <p className="text-xs text-secondary font-sans italic">Simulated secure mailbox:</p>
                     {messages.map((m, i) => (
-                      <div key={i} className="p-4 bg-white rounded-xl border border-surface-container text-xs lift flex flex-col gap-2">
+                      <div key={i} className="p-4 bg-surface-container rounded-xl border border-surface-container text-xs lift flex flex-col gap-2">
                         <div className="flex justify-between items-baseline">
                           <span className="font-display font-bold text-on-surface">{m.name}</span>
                           <span className="font-mono text-[10px] text-secondary">{m.timestamp}</span>
@@ -711,26 +711,26 @@ export default function App() {
                         <label className="block font-sans text-xs text-secondary mb-1.5 font-medium">Name *</label>
                         <input type="text" required value={name} onChange={e => setName(e.target.value)}
                           placeholder="Dr. Jordan Smith"
-                          className="field w-full bg-white border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
+                          className="field w-full bg-surface-container border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
                       </div>
                       <div>
                         <label className="block font-sans text-xs text-secondary mb-1.5 font-medium">Email *</label>
                         <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
                           placeholder="jordan@org.com"
-                          className="field w-full bg-white border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
+                          className="field w-full bg-surface-container border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
                       </div>
                     </div>
                     <div>
                       <label className="block font-sans text-xs text-secondary mb-1.5 font-medium">Organization (Optional)</label>
                       <input type="text" value={company} onChange={e => setCompany(e.target.value)}
                         placeholder="Research Institute of Technology"
-                        className="field w-full bg-white border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
+                        className="field w-full bg-surface-container border border-surface-container rounded-xl px-4 py-3 text-sm font-sans" />
                     </div>
                     <div>
                       <label className="block font-sans text-xs text-secondary mb-1.5 font-medium">Message *</label>
                       <textarea required rows={4} value={message} onChange={e => setMessage(e.target.value)}
                         placeholder="Tell me about your project, collaboration idea, or opportunity..."
-                        className="field w-full bg-white border border-surface-container rounded-xl px-4 py-3 text-sm font-sans resize-none" />
+                        className="field w-full bg-surface-container border border-surface-container rounded-xl px-4 py-3 text-sm font-sans resize-none" />
                     </div>
                     <AnimatePresence>
                       {isSubmitSuccess && (

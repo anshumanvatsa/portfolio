@@ -136,7 +136,7 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
               </button>
               <button
                 onClick={onClose}
-                className="p-1.5 text-white/40 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+                className="p-1.5 text-white/40 hover:text-white rounded-lg hover:bg-surface-container/10 transition-colors"
                 id="close-resume-btn"
               >
                 <X className="w-5 h-5" />
@@ -145,7 +145,7 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
           </div>
 
           {/* Paper */}
-          <div className="bg-white overflow-y-auto max-h-[85vh] print:max-h-none">
+          <div className="bg-surface-container overflow-y-auto max-h-[85vh] print:max-h-none">
             <div className="p-8 md:p-12 max-w-4xl mx-auto font-sans text-[#09090b]">
 
               {/* ── Header ── */}

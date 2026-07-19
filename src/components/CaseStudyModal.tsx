@@ -82,11 +82,11 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-            className="w-screen max-w-2xl bg-white h-full shadow-2xl flex flex-col overflow-y-auto"
+            className="w-screen max-w-2xl bg-surface-container h-full shadow-2xl flex flex-col overflow-y-auto"
             id={`case-study-${project.id}`}
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-surface-container py-5 px-8 flex justify-between items-center z-10">
+            <div className="sticky top-0 bg-surface-container/95 backdrop-blur-md border-b border-surface-container py-5 px-8 flex justify-between items-center z-10">
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className={`text-[9px] font-mono px-2 py-0.5 rounded-full border uppercase tracking-wider font-semibold ${categoryColor}`}>
@@ -238,7 +238,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             </div>
 
             {/* Footer */}
-            <div className="sticky bottom-0 bg-white/95 backdrop-blur-md border-t border-surface-container p-5 px-8 flex justify-end gap-3">
+            <div className="sticky bottom-0 bg-surface-container/95 backdrop-blur-md border-t border-surface-container p-5 px-8 flex justify-end gap-3">
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}

@@ -119,7 +119,7 @@ export default function MlPlayground() {
   };
 
   return (
-    <div className="bg-white p-6 md:p-8 rounded-lg border border-surface-container select-none" id="ml-laboratory-widget">
+    <div className="bg-surface-container p-6 md:p-8 rounded-lg border border-surface-container select-none" id="ml-laboratory-widget">
       {/* Selector Tabs */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-surface-container pb-4 mb-6 gap-4">
         <div>
@@ -139,7 +139,7 @@ export default function MlPlayground() {
             }}
             className={`flex-1 sm:flex-none px-4 py-1.5 rounded text-xs font-mono transition-colors ${
               model === 'care'
-                ? 'bg-white text-primary shadow-sm font-semibold'
+                ? 'bg-surface-container text-primary shadow-sm font-semibold'
                 : 'text-secondary hover:text-on-surface'
             }`}
             id="select-care-model-tab"
@@ -153,7 +153,7 @@ export default function MlPlayground() {
             }}
             className={`flex-1 sm:flex-none px-4 py-1.5 rounded text-xs font-mono transition-colors ${
               model === 'cascade'
-                ? 'bg-white text-primary shadow-sm font-semibold'
+                ? 'bg-surface-container text-primary shadow-sm font-semibold'
                 : 'text-secondary hover:text-on-surface'
             }`}
             id="select-cascade-model-tab"
@@ -297,7 +297,7 @@ export default function MlPlayground() {
                       setContentCategory(e.target.value);
                       setHasInferenceRun(false);
                     }}
-                    className="w-full bg-white border border-surface-container rounded p-2 text-xs font-mono focus:outline-none focus:border-primary"
+                    className="w-full bg-surface-container border border-surface-container rounded p-2 text-xs font-mono focus:outline-none focus:border-primary"
                   >
                     <option value="tech">Machine Learning &amp; Tech (Highly Viral)</option>
                     <option value="business">Venture Capital &amp; Business (Moderate)</option>
