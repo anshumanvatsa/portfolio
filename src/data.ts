@@ -552,8 +552,8 @@ export const PROJECTS: Project[] = [
       'Optimized asset delivery for high-resolution digital art.'
     ],
     architecture: 'React Frontend -> Framer Motion Animations -> Custom UI Design System',
-    liveUrl: 'http://13.60.57.168:4007',
-    githubUrl: 'https://github.com/anshumanvatsa/artful-heaven',
+    liveUrl: 'http://13.60.57.168:4008',
+    githubUrl: 'https://github.com/anshumanvatsa/the-artful-haven',
     previewImage: '/artful-heaven-preview.png',
     category: 'fullstack',
     metrics: [
