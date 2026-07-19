@@ -14,23 +14,23 @@
   --color-secondary: #a1a1aa;
   --color-on-surface: #f4f4f5;
   --color-on-surface-variant: #d4d4d8;
-  --color-surface: #111111;
-  --color-surface-bright: #1a1a1a;
-  --color-surface-dim: #0a0a0a;
-  --color-surface-container: #18181b;
+  --color-surface: #14110E;
+  --color-surface-bright: #1A1612;
+  --color-surface-dim: #0A0806;
+  --color-surface-container: #1A1613;
   --color-surface-container-high: #27272a;
   --color-surface-container-low: #0a0a0a;
   --color-surface-container-lowest: #000000;
   --color-outline: #3f3f46;
   --color-outline-variant: #27272a;
-  --color-background: #f4f4f5;
+  --color-background: #0D0B08;
   --color-accent: #f59e0b;
   --color-accent2: #fcd34d;
 }
 
 /* ===== Base ===== */
 @layer base {
-  html { scroll-behavior: smooth; background: #f4f4f5; color: #f4f4f5; }
+  html { scroll-behavior: smooth; background: #0D0B08; color: #f4f4f5; }
   body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   * { box-sizing: border-box; }
 }
@@ -125,7 +125,7 @@
 
 /* Shimmer on dark name */
 .shimmer-name {
-  background: linear-gradient(90deg, #f4f4f5 0%, #f4f4f5 35%, #fbbf24 50%, #f4f4f5 65%, #f4f4f5 100%);
+  background: linear-gradient(90deg, #0D0B08 0%, #0D0B08 35%, #fbbf24 50%, #0D0B08 65%, #0D0B08 100%);
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

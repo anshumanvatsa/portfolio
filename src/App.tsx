@@ -17,10 +17,10 @@ interface Message {
 }
 
 const STATS = [
-  { label: 'GitHub Projects', value: '20+', icon: Zap, color: '#fbbf24' },
+  { label: 'GitHub Projects', value: '15+', icon: Zap, color: '#fbbf24' },
   { label: 'Training Rows', value: '800K+', icon: Cpu, color: '#f59e0b' },
   { label: 'CGPA', value: '8.83', icon: Award, color: '#d97706' },
-  { label: 'Technologies', value: '20+', icon: Layers, color: '#fcd34d' },
+  { label: 'Technologies', value: '30+', icon: Layers, color: '#fcd34d' },
 ];
 
 const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'ML Engineer · Full-Stack Developer · DevOps Engineer.', 'Open Source Builder.'];
@@ -277,7 +277,7 @@ export default function App() {
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
               className="font-sans text-base md:text-[17px] text-on-surface-variant leading-relaxed max-w-xl">
               Final-year CS student at VIT Chennai, currently an <strong className="text-on-surface font-semibold">ML Intern at Deuglo</strong> building AI-driven product features. Experienced across machine learning, full-stack development, and cloud deployment through{' '}
-              <strong className="text-on-surface font-semibold">20+ projects on GitHub</strong>.
+              <strong className="text-on-surface font-semibold">15+ projects on GitHub</strong>.
             </motion.p>
 
             {/* CTAs */}
@@ -362,7 +362,7 @@ export default function App() {
             <div>
               <p className="font-mono text-xs text-primary font-semibold uppercase tracking-widest mb-2">Portfolio</p>
               <h2 className="font-display font-bold text-4xl md:text-5xl text-on-surface">Selected Work</h2>
-              <p className="font-mono text-xs text-secondary uppercase tracking-wider mt-2">2023 — Present · 20+ Projects</p>
+              <p className="font-mono text-xs text-secondary uppercase tracking-wider mt-2">2023 — Present · 15+ Projects</p>
             </div>
             {/* Filter tabs */}
             <div className="flex flex-wrap gap-1.5 p-1 bg-surface-container rounded-xl border border-surface-container-high">
