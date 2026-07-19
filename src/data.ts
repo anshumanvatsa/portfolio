@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
       'Hybrid XGBoost forecaster outperforms weather-only and severity-only baselines.',
     ],
     architecture: 'React Digital Twin → FastAPI → YOLOv8 Detection → XGBoost Hybrid Forecaster',
-    liveUrl: 'https://github.com/anshumanvatsa/Road-Pavement-Damage-Prediction',
+    liveUrl: 'https://predictive-pavement.vercel.app',
     githubUrl: 'https://github.com/anshumanvatsa/Road-Pavement-Damage-Prediction',
     previewImage: '/pave-pro-preview.png',
     category: 'ml',
