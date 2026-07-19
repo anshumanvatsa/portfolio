@@ -23,7 +23,7 @@ const STATS = [
   { label: 'Technologies', value: '30+', icon: Layers, color: '#fcd34d' },
 ];
 
-const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'ML Engineer · Full-Stack Developer · DevOps Engineer.', 'Open Source Builder.'];
+const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'ML Engineer · Full-Stack Developer.', 'Open Source Builder.'];
 
 // Animated number counter
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -425,7 +425,7 @@ export default function App() {
 
                       {/* Preview image (if any) */}
                       {proj.previewImage && (
-                        <div className="md:col-span-12 -mx-1 -mt-1 mb-3 rounded-xl overflow-hidden border border-surface-container-high bg-[#0a0a12] aspect-[21/9]">
+                        <div className="md:col-span-3 mb-4 md:mb-0 rounded-xl overflow-hidden border border-surface-container-high bg-[#0a0a12] aspect-video md:aspect-square max-h-[220px] md:order-last">
                           <img
                             src={`${import.meta.env.BASE_URL}${proj.previewImage.slice(1)}`}
                             alt={`${proj.title} preview`}
@@ -435,7 +435,7 @@ export default function App() {
                         </div>
                       )}
                       {/* Description + metrics + tags */}
-                      <div className="md:col-span-5">
+                      <div className="md:col-span-4">
                         <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-4">{proj.shortDesc}</p>
                         {/* Metrics */}
                         <div className="hidden md:flex items-center gap-6 mb-4">
