@@ -18,12 +18,12 @@ interface Message {
 
 const STATS = [
   { label: 'GitHub Projects', value: '20+', icon: Zap, color: '#6c47ff' },
-  { label: 'Backend Endpoints', value: '6+', icon: Cpu, color: '#a855f7' },
+  { label: 'Training Rows', value: '800K+', icon: Cpu, color: '#a855f7' },
   { label: 'CGPA', value: '8.83', icon: Award, color: '#06b6d4' },
   { label: 'Technologies', value: '20+', icon: Layers, color: '#f59e0b' },
 ];
 
-const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'DevOps Engineer.', 'Open Source Builder.'];
+const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'ML Engineer · Full-Stack Developer · DevOps Engineer.', 'Open Source Builder.'];
 
 // Animated number counter
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -239,7 +239,7 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-5 md:px-10 flex-1 w-full">
 
         {/* ═══ HERO ═══ */}
-        <section className="hero-mesh py-20 md:py-36 flex flex-col md:flex-row md:items-center md:justify-between gap-14 divider relative overflow-hidden">
+        <section className="hero-mesh pt-6 pb-20 md:pt-10 md:pb-36 flex flex-col md:flex-row md:items-center md:justify-between gap-14 divider relative overflow-hidden">
           {/* Decorative blobs */}
           <div className="pointer-events-none absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-primary/10 to-accent/5 blur-3xl" />
           <div className="pointer-events-none absolute bottom-0 left-1/3 w-64 h-64 rounded-full bg-purple-400/5 blur-3xl" />
