@@ -678,8 +678,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'a3',
-    title: '20+ GitHub Projects',
-    body: 'Built and published 20+ projects on GitHub from 2023 to present across ML, full-stack, DevOps, and security.',
+    title: '8+ Live Deployments',
+    body: 'Successfully built, containerized, and deployed 8+ production-ready applications across Vercel, Render, and AWS.',
     icon: '🚀',
     year: '2023–Present',
   },
