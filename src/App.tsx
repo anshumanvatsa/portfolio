@@ -17,13 +17,13 @@ interface Message {
 }
 
 const STATS = [
-  { label: 'GitHub Projects', value: '15+', icon: Zap, color: '#fbbf24' },
+  { label: 'AI Products Built', value: '15+', icon: Zap, color: '#fbbf24' },
   { label: 'Training Rows', value: '800K+', icon: Cpu, color: '#f59e0b' },
   { label: 'CGPA', value: '8.83', icon: Award, color: '#d97706' },
   { label: 'Technologies', value: '30+', icon: Layers, color: '#fcd34d' },
 ];
 
-const PHRASES = ['ML Engineer.', 'Full-Stack Dev.', 'AI Researcher.', 'ML Engineer · Full-Stack Developer.', 'Open Source Builder.'];
+const PHRASES = ['ML Engineer.', 'AI Product Builder.', 'Full-Stack Developer.'];
 
 // Animated number counter
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -277,7 +277,7 @@ export default function App() {
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
               className="font-sans text-base md:text-[17px] text-on-surface-variant leading-relaxed max-w-xl">
               Final-year CS student at VIT Chennai, currently an <strong className="text-on-surface font-semibold">ML Intern at Deuglo</strong> building AI-driven product features. Experienced across machine learning, full-stack development, and cloud deployment through{' '}
-              <strong className="text-on-surface font-semibold">15+ projects on GitHub</strong>.
+              <strong className="text-on-surface font-semibold">15+ AI Products Built</strong>.
             </motion.p>
 
             {/* CTAs */}
@@ -319,8 +319,8 @@ export default function App() {
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, type: 'spring', stiffness: 150 }}
             className="hidden md:flex items-center justify-center relative">
             <div className="float-anim relative">
-              <div className="glow-ring w-44 h-44 rounded-full bg-gradient-to-br from-[#0f0e17] to-[#1e1b30] border border-primary/40 flex items-center justify-center shadow-2xl shadow-primary/20">
-                <span className="font-display font-bold text-6xl text-white tracking-wider">A</span>
+              <div className="glow-ring w-44 h-44 rounded-full border border-primary/40 flex items-center justify-center shadow-2xl shadow-primary/20 overflow-hidden">
+                <img src={`${import.meta.env.BASE_URL}anshuman-profile.jpeg`} alt="Anshuman" className="w-full h-full object-cover" />
               </div>
               {/* Orbit rings */}
               <svg className="absolute inset-0 w-full h-full orbit-1" viewBox="0 0 176 176">
