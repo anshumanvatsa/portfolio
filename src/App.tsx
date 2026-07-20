@@ -318,17 +318,10 @@ export default function App() {
           {/* Avatar */}
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, type: 'spring', stiffness: 150 }}
             className="hidden md:flex items-center justify-center relative">
-            <div className="float-anim relative">
+            <div className="relative">
               <div className="glow-ring w-44 h-44 rounded-full border border-primary/40 flex items-center justify-center shadow-2xl shadow-primary/20 overflow-hidden">
                 <img src={`${import.meta.env.BASE_URL}anshuman-profile.jpeg`} alt="Anshuman" className="w-full h-full object-cover" />
               </div>
-              {/* Orbit rings */}
-              <svg className="absolute inset-0 w-full h-full orbit-1" viewBox="0 0 176 176">
-                <ellipse cx="88" cy="88" rx="82" ry="42" fill="none" stroke="rgba(108,71,255,0.2)" strokeWidth="1.5" strokeDasharray="6 4" />
-              </svg>
-              <svg className="absolute inset-0 w-full h-full orbit-2" viewBox="0 0 176 176">
-                <ellipse cx="88" cy="88" rx="72" ry="32" fill="none" stroke="rgba(168,85,247,0.15)" strokeWidth="1" transform="rotate(45 88 88)" />
-              </svg>
             </div>
           </motion.div>
         </section>
@@ -423,19 +416,8 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Preview image (if any) */}
-                      {proj.previewImage && (
-                        <div className="md:col-span-3 mb-4 md:mb-0 rounded-xl overflow-hidden border border-surface-container-high bg-[#0a0a12] aspect-video md:aspect-square max-h-[220px] md:order-last">
-                          <img
-                            src={`${import.meta.env.BASE_URL}${proj.previewImage.slice(1)}`}
-                            alt={`${proj.title} preview`}
-                            className="w-full h-full object-cover object-center"
-                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                          />
-                        </div>
-                      )}
                       {/* Description + metrics + tags */}
-                      <div className="md:col-span-4">
+                      <div className="md:col-span-5">
                         <p className="font-sans text-sm text-on-surface-variant leading-relaxed mb-4">{proj.shortDesc}</p>
                         {/* Metrics */}
                         <div className="hidden md:flex items-center gap-6 mb-4">
