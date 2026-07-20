@@ -261,6 +261,40 @@ export const PROJECTS: Project[] = [
     status: 'live',
   },
   {
+    id: 'pillsafe-ai',
+    number: '07',
+    title: 'PillSafe-AI',
+    subtitle: 'Medicine Safety & Adverse Reaction AI',
+    shortDesc:
+      'A comprehensive medicine safety checker with a modern React frontend and a robust Flask backend. Uses XGBoost ML models to predict adverse reactions and provide clinical safety insights.',
+    tags: ['React', 'Flask', 'XGBoost'],
+    fullTags: ['React', 'Flask', 'XGBoost', 'Python', 'TypeScript', 'Machine Learning', 'Healthcare AI'],
+    description:
+      'PillSafe-AI is a comprehensive medicine safety platform designed to analyze drug interactions and predict potential adverse reactions. Built with a modern React UI and a Flask backend, the system leverages an XGBoost machine learning model trained on extensive clinical data to deliver high-accuracy safety insights. It aims to empower healthcare professionals and users with transparent, data-driven medication safety checks.',
+    challenges: [
+      'Training the XGBoost model on complex, high-dimensional pharmaceutical datasets.',
+      'Translating raw ML probability scores into understandable clinical insights for the UI.',
+      'Building a seamless bridge between a Python/Flask inference engine and a React frontend.',
+    ],
+    achievements: [
+      'Successfully deployed an XGBoost ML model with high confidence scores for interaction predictions.',
+      'Developed a highly polished, futuristic glassmorphism UI for displaying clinical data.',
+      'Achieved low-latency inference for real-time medication safety checks.',
+    ],
+    architecture: 'React Frontend → Flask Backend API → XGBoost ML Model → Clinical Insights',
+    liveUrl: 'https://pillsafe-ai.vercel.app',
+    githubUrl: 'https://github.com/anshumanvatsa/PillSafe-AI',
+    previewImage: '/pillsafe-preview.png',
+    category: 'ml',
+    metrics: [
+      { label: 'Model', value: 'XGBoost' },
+      { label: 'Backend', value: 'Flask' },
+      { label: 'Type', value: 'Health AI' },
+    ],
+    year: '2024',
+    status: 'live',
+  },
+  {
     id: 'construction',
     number: '07',
     title: 'Construction Digital Twin',
@@ -499,40 +533,6 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'safety-vision',
-    number: '14',
-    title: 'Safety Sparkle Vision',
-    subtitle: 'Workplace PPE Safety Detection',
-    shortDesc:
-      'AI-powered workplace safety monitoring system using computer vision to detect PPE compliance, hard hats, and safety violations in real-time from live video feeds.',
-    tags: ['YOLOv8', 'TypeScript', 'Computer Vision'],
-    fullTags: ['YOLOv8', 'TypeScript', 'Python', 'OpenCV', 'FastAPI', 'React', 'Real-time Detection'],
-    description:
-      'Safety Sparkle Vision is a workplace safety monitoring platform using computer vision to detect PPE compliance — hard hats, vests, and safety gear — from live or recorded video feeds. The system flags violations in real-time and generates safety compliance reports. Built with a TypeScript/React frontend and a Python/FastAPI backend running YOLOv8 inference.',
-    challenges: [
-      'Training/fine-tuning YOLOv8 on PPE-specific datasets for accurate helmet and vest detection.',
-      'Processing video frames in real-time without falling behind the live feed.',
-      'Designing a violation detection and alerting workflow that minimizes false positives.',
-    ],
-    achievements: [
-      'Real-time PPE detection (hard hats, vests) from video feeds using YOLOv8.',
-      'TypeScript + React frontend with live violation overlay on video stream.',
-      'Safety compliance reporting and violation logging system.',
-    ],
-    architecture: 'Video Feed → YOLOv8 Inference → FastAPI → React Dashboard → Compliance Reports',
-    liveUrl: 'https://github.com/anshumanvatsa/safety-sparkle-vision',
-    githubUrl: 'https://github.com/anshumanvatsa/safety-sparkle-vision',
-    previewImage: '/safety-preview.png',
-    category: 'ml',
-    metrics: [
-      { label: 'Vision', value: 'YOLOv8' },
-      { label: 'Stack', value: 'TypeScript' },
-      { label: 'Type', value: 'Safety AI' },
-    ],
-    year: '2025',
-    status: 'open-source',
-  },
-  {
     id: 'artful-heaven',
     number: '15',
     title: 'Artful Heaven',
@@ -584,7 +584,7 @@ export const TIMELINE: TimelineItem[] = [
     id: 'exp2',
     period: 'Mar 2024 — Mar 2026',
     role: 'Propulsion Engineer',
-    organization: 'Special Team-Ignition',
+    organization: 'Special Team-Ignition (Student Rocketry Team)',
     details: [
       'Validated CFD models against experimental data for nozzle flow and combustion accuracy.',
       'Used OpenRocket/OpenMotor for motor design, trajectory, and thrust optimization.',
