@@ -53,9 +53,11 @@ export interface Achievement {
   year: string;
 }
 
-// ─────────────────── PROJECTS (all from GitHub — anshumanvatsa) ──────�  {
-    id: 'multi-platform-engagement',
-    title: 'Multi-Platform Social Media Predictor',
+// ─────────────────── PROJECTS (all from GitHub — anshumanvatsa) ───────────────────
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'multi-platform-engagement',    title: 'Multi-Platform Social Media Predictor',
     subtitle: 'LightGBM Engagement Forecasting',
     shortDesc:
       'Production-grade ML system classifying social media posts across five platforms. Trained on 800K+ real posts with full SHAP explainability.',
@@ -87,8 +89,7 @@ export interface Achievement {
     status: 'open-source',
   },
   {
-    id: 'roadpavement',
-    title: 'PavePro Vision',
+    id: 'roadpavement',    title: 'PavePro Vision',
     subtitle: 'YOLOv8 Road Damage Detection & Forecasting',
     shortDesc:
       'YOLOv8 trained on RDD2022 dataset (mAP@50: 55%, Precision: 0.608, 20 epochs). Hybrid XGBoost model fusing weather + traffic + vision features for pavement degradation forecasting. React digital twin dashboard.',
@@ -115,10 +116,6 @@ export interface Achievement {
       { label: 'mAP@50', value: '55%' },
       { label: 'Precision', value: '0.608' },
       { label: 'Dataset', value: 'RDD2022' },
-    ],
-    year: '2025',
-    status: 'open-source',
-  },   { label: 'Dataset', value: '800K' },
     ],
     year: '2025',
     status: 'open-source',
