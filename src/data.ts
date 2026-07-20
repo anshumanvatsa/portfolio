@@ -57,110 +57,7 @@ export interface Achievement {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'roadpavement',
-    number: '01',
-    title: 'PavePro Vision',
-    subtitle: 'YOLOv8 Road Damage Detection & Forecasting',
-    shortDesc:
-      'YOLOv8 trained on RDD2022 dataset (mAP@50: 55%, Precision: 0.608, 20 epochs). Hybrid XGBoost model fusing weather + traffic + vision features for pavement degradation forecasting. React digital twin dashboard.',
-    tags: ['YOLOv8', 'XGBoost', 'FastAPI'],
-    fullTags: ['YOLOv8', 'XGBoost', 'Python', 'TypeScript', 'FastAPI', 'React', 'RDD2022', 'Computer Vision'],
-    description:
-      'PavePro Vision is an AI-driven road maintenance platform built on real training data. The YOLOv8 detection model was trained for 20 epochs on the RDD2022 road damage dataset, achieving mAP@50 of 55% (up from 15.6% at epoch 1) with precision 0.608 and recall 0.511 — still trending upward at cutoff. A hybrid XGBoost regressor fuses weather, traffic, and vision-derived severity features to forecast future pavement degradation. The system includes a React digital twin dashboard with a FastAPI backend for maintenance scheduling.',
-    challenges: [
-      'Training YOLOv8 on the RDD2022 multi-country road damage dataset and managing class imbalance across damage types (D00, D10, D20).',
-      'Fusing heterogeneous inputs (YOLOv8 detections, weather API, traffic volume) into a single XGBoost regression pipeline.',
-      'Model was cut short at 20 epochs (still improving) — a longer training run would push mAP@50 toward ~65–70%.',
-    ],
-    achievements: [
-      'YOLOv8 on RDD2022: mAP@50 = 55.0%, Precision = 0.608, Recall = 0.511 (20 epochs, real training run).',
-      'CNN severity classifier across 5 damage classes: 55% accuracy (vs 20% random baseline).',
-      'Hybrid XGBoost forecaster outperforms weather-only and severity-only baselines.',
-    ],
-    architecture: 'React Digital Twin → FastAPI → YOLOv8 Detection → XGBoost Hybrid Forecaster',
-    liveUrl: 'https://predictive-pavement.vercel.app',
-    githubUrl: 'https://github.com/anshumanvatsa/Road-Pavement-Damage-Prediction',
-    previewImage: '/pave-pro-preview.png',
-    category: 'ml',
-    metrics: [
-      { label: 'mAP@50', value: '55%' },
-      { label: 'Precision', value: '0.608' },
-      { label: 'Dataset', value: 'RDD2022' },
-    ],
-    year: '2025',
-    status: 'open-source',
-  },
-  {
-    id: 'multi-platform-engagement',
-    number: '02',
-    title: 'Multi-Platform Social Media Predictor',
-    subtitle: 'LightGBM Engagement Forecasting',
-    shortDesc:
-      'Production-grade ML system classifying social media posts across five platforms. Trained on 800K+ real posts with full SHAP explainability.',
-    tags: ['LightGBM', 'Python', 'FastAPI'],
-    fullTags: ['LightGBM', 'Python', 'FastAPI', 'SHAP', 'Pandas', 'Machine Learning', 'Data Science'],
-    description:
-      'A production-grade machine learning system that classifies social media posts as HIGH or LOW engagement across five platforms (Facebook, TikTok, Twitter, YouTube). Trained on 800,953 real posts, this system uses per-platform binarisation and compares 5 models with 5-fold stratified cross-validation. The winning LightGBM model achieves an F1 score of 0.87 and AUC of 0.94 on a 160K held-out test set, with SHAP TreeExplainer for full explainability.',
-    challenges: [
-      'Handling severe class imbalance and differing engagement baselines across 5 separate social platforms.',
-      'Processing an 800K row dataset while maintaining strict 5-fold stratified cross-validation without data leakage.',
-      'Deploying the model via a FastAPI microservice with SHAP TreeExplainer for real-time inference.',
-    ],
-    achievements: [
-      'LightGBM model achieving F1=0.8701 and AUC=0.9444 on a 160K held-out test set.',
-      'Full SHAP explainability with 7 publication-ready figures.',
-      'Per-platform thresholding ensuring "High" engagement means high for that specific platform.',
-    ],
-    architecture: '800K Dataset → Feature Engineering → LightGBM Model → SHAP Explainer → FastAPI',
-    liveUrl: 'https://github.com/anshumanvatsa/multi-platform-engagement-predictor',
-    githubUrl: 'https://github.com/anshumanvatsa/multi-platform-engagement-predictor',
-    previewImage: '/multi-platform-preview.png',
-    category: 'ml',
-    metrics: [
-      { label: 'F1 Score', value: '0.87' },
-      { label: 'AUC-ROC', value: '0.94' },
-      { label: 'Dataset', value: '800K' },
-    ],
-    year: '2025',
-    status: 'open-source',
-  },
-  {
-    id: 'carepredict',
-    number: '03',
-    title: 'CarePredictAI',
-    subtitle: 'Clinical Risk Prediction System',
-    shortDesc:
-      'Full-stack health risk platform predicting 90-day patient deterioration across 4 conditions. v2 added XGBoost classifiers with risk stratification and explainability dashboard.',
-    tags: ['React', 'FastAPI', 'PyTorch LSTM'],
-    fullTags: ['React', 'FastAPI', 'PyTorch LSTM', 'XGBoost', 'SHAP', 'Python', 'Tailwind CSS'],
-    description:
-      'CarePredictAI is a full-stack health risk platform predicting 90-day patient deterioration across 4 clinical conditions using PyTorch LSTM models. A FastAPI backend serves the inference layer with a React dashboard for clinical visualization. Version 2 added XGBoost classifiers with SHAP-based risk stratification and a full explainability dashboard so clinicians can trace which features drove the prediction.',
-    challenges: [
-      'Handling clinical time-series data with irregular sampling intervals and significant missing value rates.',
-      'Building a model explainability layer that translates SHAP outputs into actionable clinical summaries.',
-      'Coordinating v2 XGBoost pipeline alongside the existing LSTM model without breaking the live inference API.',
-    ],
-    achievements: [
-      'PyTorch LSTM pipeline for patient deterioration prediction across 4 clinical conditions.',
-      'v2 XGBoost classifiers with full SHAP explainability and risk stratification dashboard.',
-      'Deployed live at care-predict-ai.vercel.app.',
-    ],
-    architecture: 'React Dashboard → FastAPI → PyTorch LSTM / XGBoost → PostgreSQL',
-    liveUrl: 'https://care-predict-ai.vercel.app',
-    githubUrl: 'https://github.com/anshumanvatsa/care-predict-ai-v1',
-    previewImage: '/carepredict-preview.png',
-    category: 'ml',
-    metrics: [
-      { label: 'Conditions', value: '4' },
-      { label: 'Models', value: '2' },
-      { label: 'Live', value: 'Vercel' },
-    ],
-    year: '2024',
-    status: 'live',
-  },
-  {
     id: 'varuna',
-    number: '04',
     title: 'VARUNA',
     subtitle: 'Live Ocean Hazard Reporting Platform',
     shortDesc:
@@ -194,7 +91,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'bharat-truth-lens',
-    number: '05',
     title: 'Bharat Truth Lens',
     subtitle: 'AI-Powered Fake News Detection',
     shortDesc:
@@ -228,7 +124,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'cloudpilot',
-    number: '06',
     title: 'CloudPilot',
     subtitle: 'DevOps Monitoring Dashboard',
     shortDesc:
@@ -262,7 +157,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'pillsafe-ai',
-    number: '07',
     title: 'PillSafe-AI',
     subtitle: 'Medicine Safety & Adverse Reaction AI',
     shortDesc:
@@ -296,7 +190,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'construction',
-    number: '07',
     title: 'Construction Digital Twin',
     subtitle: 'Real-time IoT Site Monitoring Platform',
     shortDesc:
@@ -330,7 +223,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'social-media-pre',
-    number: '08',
     title: 'Social Media Predictor',
     subtitle: 'Pre-Publication Engagement Analytics',
     shortDesc:
@@ -364,7 +256,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'autostream',
-    number: '09',
     title: 'AutoStream AI Agent',
     subtitle: 'Conversational Lead-Gen AI Agent',
     shortDesc:
@@ -398,7 +289,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'heartdisease',
-    number: '10',
     title: 'Heart Disease Predictor',
     subtitle: 'Multi-Model ML Classification Pipeline',
     shortDesc:
@@ -432,7 +322,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'documind',
-    number: '11',
     title: 'DocuMind RAG',
     subtitle: 'Document Q&A Chatbot with RAG',
     shortDesc:
@@ -466,7 +355,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'selective-encryption',
-    number: '12',
     title: 'Selective Encryption System',
     subtitle: 'AES-256-GCM Security Platform',
     shortDesc:
@@ -500,7 +388,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'medicine-safety',
-    number: '13',
     title: 'DrugSafe AI',
     subtitle: 'Medicine Safety Predictor',
     shortDesc:
@@ -534,7 +421,6 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'artful-heaven',
-    number: '15',
     title: 'Artful Heaven',
     subtitle: 'Premium E-Commerce Art Platform',
     shortDesc: 'A highly aesthetic, UI/UX-heavy digital art and e-commerce platform featuring glassmorphism, fluid animations, and premium dark-mode styling.',

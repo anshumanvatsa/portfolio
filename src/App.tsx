@@ -17,13 +17,13 @@ interface Message {
 }
 
 const STATS = [
-  { label: 'AI Products Built', value: '15+', icon: Zap, color: '#fbbf24' },
+  { label: 'AI Products Built', value: '20+', icon: Zap, color: '#fbbf24' },
   { label: 'Training Rows', value: '800K+', icon: Cpu, color: '#f59e0b' },
   { label: 'CGPA', value: '8.83', icon: Award, color: '#d97706' },
-  { label: 'Technologies', value: '30+', icon: Layers, color: '#fcd34d' },
+  { label: 'Live Deployments', value: '8+', icon: Layers, color: '#fcd34d' },
 ];
 
-const PHRASES = ['ML Engineer.', 'AI Product Builder.', 'Full-Stack Developer.'];
+const PHRASES = ['ML Engineer.', 'DevOps & Full-Stack.', 'AI Product Builder.'];
 
 // Animated number counter
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -239,7 +239,7 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-5 md:px-10 flex-1 w-full">
 
         {/* ═══ HERO ═══ */}
-        <section className="hero-mesh pt-6 pb-20 md:pt-10 md:pb-36 flex flex-col md:flex-row md:items-center md:justify-between gap-14 divider relative overflow-hidden">
+        <section className="hero-mesh pt-6 pb-20 md:pt-10 md:pb-36 flex flex-col md:flex-row md:items-center justify-between max-w-[900px] mx-auto gap-12 divider relative overflow-hidden">
           {/* Decorative blobs */}
           <div className="pointer-events-none absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-primary/10 to-accent/5 blur-3xl" />
           <div className="pointer-events-none absolute bottom-0 left-1/3 w-64 h-64 rounded-full bg-amber-400/5 blur-3xl" />
@@ -277,7 +277,7 @@ export default function App() {
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
               className="font-sans text-base md:text-[17px] text-on-surface-variant leading-relaxed max-w-xl">
               Final-year CS student at VIT Chennai, currently an <strong className="text-on-surface font-semibold">ML Intern at Deuglo</strong> building AI-driven product features. Experienced across machine learning, full-stack development, and cloud deployment through{' '}
-              <strong className="text-on-surface font-semibold">15+ AI Products Built</strong>.
+              <strong className="text-on-surface font-semibold">20+ AI Products Built</strong>.
             </motion.p>
 
             {/* CTAs */}
@@ -355,7 +355,7 @@ export default function App() {
             <div>
               <p className="font-mono text-xs text-primary font-semibold uppercase tracking-widest mb-2">Portfolio</p>
               <h2 className="font-display font-bold text-4xl md:text-5xl text-on-surface">Selected Work</h2>
-              <p className="font-mono text-xs text-secondary uppercase tracking-wider mt-2">2023 — Present · 15+ Projects</p>
+              <p className="font-mono text-xs text-secondary uppercase tracking-wider mt-2">2023 — Present · 20+ Projects</p>
             </div>
             {/* Filter tabs */}
             <div className="flex flex-wrap gap-1.5 p-1 bg-surface-container rounded-xl border border-surface-container-high">
@@ -393,7 +393,7 @@ export default function App() {
                   >
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
                       {/* Number */}
-                      <div className="md:col-span-1 font-mono text-secondary/60 text-sm font-semibold pt-1">{proj.number}</div>
+                      <div className="md:col-span-1 font-mono text-secondary/60 text-sm font-semibold pt-1">{String(idx + 1).padStart(2, '0')}</div>
 
                       {/* Title + badges */}
                       <div className="md:col-span-4">
@@ -478,6 +478,7 @@ export default function App() {
                 Built a post-performance prediction model for DG-Social via data enrichment, labeling, and trend-based forecasting. Shipped AI content tools (captions, hashtags, cross-platform adaptation) across 6 new backend endpoints.
               </p>
               <div className="flex gap-2">
+                <span className="font-mono text-[10px] px-2.5 py-1 rounded-lg bg-rose-100/60 text-rose-700 border border-rose-200/60 flex items-center gap-1">🔒 Under NDA</span>
                 {['PyTorch', 'XGBoost', 'FastAPI', 'DG-Social'].map(t => (
                   <span key={t} className="font-mono text-[10px] px-2.5 py-1 rounded-lg bg-violet-100/60 text-violet-700 border border-violet-200/60">{t}</span>
                 ))}
