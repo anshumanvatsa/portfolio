@@ -300,7 +300,7 @@ export const PROJECTS: Project[] = [
       'Dynamic risk analytics and alerting system for site safety events.',
     ],
     architecture: 'IoT Sensors → FastAPI WebSocket → React Digital Twin Dashboard → Risk Analytics',
-    liveUrl: 'http://13.60.57.168:4006/map',
+    liveUrl: 'http://13.60.57.168:4006/login',
     githubUrl: 'https://github.com/anshumanvatsa/construction-digital-twin',
     previewImage: '/construction-preview.png',
     category: 'fullstack',
