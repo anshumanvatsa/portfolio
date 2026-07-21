@@ -64,7 +64,7 @@ export const PROJECTS: Project[] = [
     tags: ['LightGBM', 'Python', 'FastAPI'],
     fullTags: ['LightGBM', 'Python', 'FastAPI', 'SHAP', 'Pandas', 'Machine Learning', 'Data Science'],
     description:
-      'A production-grade machine learning system that classifies social media posts as HIGH or LOW engagement across five platforms (Facebook, TikTok, Twitter, YouTube). Trained on 800,953 real posts, this system uses per-platform binarisation and compares 5 models with 5-fold stratified cross-validation. The winning LightGBM model achieves an F1 score of 0.87 and AUC of 0.94 on a 160K held-out test set, with SHAP TreeExplainer for full explainability.',
+      'A production-grade machine learning system that classifies social media posts as HIGH or LOW engagement across five platforms (Facebook, TikTok, Twitter, YouTube). Trained on 800,953 real posts, this system uses per-platform binarisation and compares 5 models with 5-fold stratified cross-validation. The winning LightGBM model achieves an F1 score of 0.87 and AUC of 0.94 on a 160K held-out test set, with SHAP TreeExplainer for full explainability.\n\n> Note: This is the theoretical research model unrestricted by data-leakage. We dropped post-publication columns to prevent leakage and built a highly-constrained live production web app (F1=0.63) called "Social Media Predictor" (also linked below).',
     challenges: [
       'Handling severe class imbalance and differing engagement baselines across 5 separate social platforms.',
       'Processing an 800K row dataset while maintaining strict 5-fold stratified cross-validation without data leakage.',
@@ -76,7 +76,7 @@ export const PROJECTS: Project[] = [
       'Per-platform thresholding ensuring "High" engagement means high for that specific platform.',
     ],
     architecture: '800K Dataset → Feature Engineering → LightGBM Model → SHAP Explainer → FastAPI',
-    liveUrl: 'https://github.com/anshumanvatsa/multi-platform-engagement-predictor',
+    liveUrl: 'https://engageiq-sk54.onrender.com/',
     githubUrl: 'https://github.com/anshumanvatsa/multi-platform-engagement-predictor',
     previewImage: '/multi-platform-preview.png',
     category: 'ml',
@@ -332,7 +332,7 @@ export const PROJECTS: Project[] = [
       'Built a practical tool directly applicable to social media content strategy workflows.',
     ],
     architecture: '800K Dataset → Random Forest Model → SHAP Explainer → Plain-English Output',
-    liveUrl: 'https://github.com/anshumanvatsa/Social-Media-engagement-prediction',
+    liveUrl: 'https://engageiq-sk54.onrender.com/',
     githubUrl: 'https://github.com/anshumanvatsa/Social-Media-engagement-prediction',
     previewImage: '/social-media-pre-preview.png',
     category: 'ml',
@@ -678,8 +678,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'a3',
-    title: '8+ Live Deployments',
-    body: 'Successfully built, containerized, and deployed 8+ production-ready applications across Vercel, Render, and AWS.',
+    title: '10+ Live Deployments',
+    body: 'Successfully built, containerized, and deployed 10+ production-ready applications across Vercel, Render, and AWS.',
     icon: '🚀',
     year: '2023–Present',
   },

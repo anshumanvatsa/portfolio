@@ -20,7 +20,7 @@ const STATS = [
   { label: 'AI Products Built', value: '20+', icon: Zap, color: '#fbbf24' },
   { label: 'Training Rows', value: '800K+', icon: Cpu, color: '#f59e0b' },
   { label: 'CGPA', value: '8.83', icon: Award, color: '#d97706' },
-  { label: 'Live Deployments', value: '8+', icon: Layers, color: '#fcd34d' },
+  { label: 'Live Deployments', value: '10+', icon: Layers, color: '#fcd34d' },
 ];
 
 const PHRASES = ['ML Engineer.', 'DevOps & Full-Stack.', 'AI Product Builder.'];
@@ -239,7 +239,7 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-5 md:px-10 flex-1 w-full">
 
         {/* ═══ HERO ═══ */}
-        <section className="hero-mesh pt-6 pb-20 md:pt-10 md:pb-36 flex flex-col md:flex-row md:items-center md:justify-between gap-14 divider relative overflow-hidden">
+        <section className="hero-mesh pt-6 pb-20 md:pt-10 md:pb-36 flex flex-col md:flex-row md:items-center justify-between lg:justify-start gap-14 lg:gap-32 xl:gap-48 divider relative overflow-hidden">
           {/* Decorative blobs */}
           <div className="pointer-events-none absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-primary/10 to-accent/5 blur-3xl" />
           <div className="pointer-events-none absolute bottom-0 left-1/3 w-64 h-64 rounded-full bg-amber-400/5 blur-3xl" />
