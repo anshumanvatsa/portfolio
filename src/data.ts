@@ -492,7 +492,7 @@ export const PROJECTS: Project[] = [
       'Improved system architecture from a monolithic script to a modular full-stack application.',
     ],
     architecture: 'React Frontend → Flask API → ML Model → Prediction Output',
-    liveUrl: 'https://github.com/anshumanvatsa/Medicine_safety_checker',
+    liveUrl: 'https://pill-wise-health-main.vercel.app/',
     githubUrl: 'https://github.com/anshumanvatsa/Medicine_safety_checker',
     previewImage: '/medicine-safety-preview.png',
     category: 'fullstack',
