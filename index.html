@@ -44,26 +44,304 @@
 
     <!-- Machine-Readable Fallback for AI Crawlers & Scrapers that don't execute JS -->
     <div id="ai-crawler-content" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;">
-      <h1>Anshuman Vatsa - ML Engineer & Full-Stack Developer</h1>
-      <p>Final-year CS student at VIT Chennai (CGPA 8.83). ML Intern at Deuglo building AI-driven product features. Experienced across machine learning, full-stack development, and cloud deployment through 15+ projects on GitHub.</p>
-      
-      <h2>Skills & Technologies (30+)</h2>
-      <p>Machine Learning: PyTorch, TensorFlow, Scikit-learn, XGBoost, YOLOv8, NLP, Computer Vision</p>
-      <p>Backend: Python, Node.js, Express, FastAPI, Django, Flask, Java, Spring Boot</p>
-      <p>Frontend: React, Next.js, TypeScript, Tailwind CSS</p>
-      <p>Cloud & DevOps: AWS, Docker, CI/CD, Nginx, Linux, Vercel</p>
-      <p>Databases: PostgreSQL, MongoDB, Redis, MySQL, Pinecone (Vector)</p>
 
-      <h2>Selected Projects</h2>
+      <h1>Anshuman Vatsa — ML Engineer, Full-Stack Developer &amp; DevOps Engineer</h1>
+      <p>
+        2nd-year Computer Science &amp; Engineering student at VIT Chennai (CGPA 8.83 / 10), graduating 2027.
+        ML Intern at Deuglo, building AI-driven product features end-to-end.
+        10+ live production deployments across Vercel, Render, and AWS EC2.
+        Specialises in machine learning systems, full-stack web applications, and cloud/DevOps infrastructure.
+      </p>
+      <p>Key stats: F1 Score 0.87 · AUC-ROC 0.94 · 800K+ training rows · 10+ live deployments · CGPA 8.83</p>
+
+      <!-- ── HERO / ABOUT ── -->
+      <h2>About Anshuman Vatsa</h2>
+      <p>
+        I am an ML Engineer and Full-Stack Developer at VIT Chennai. I build AI-powered products end-to-end — from
+        model training and evaluation to REST API deployment and production-grade React interfaces. I am also experienced
+        in DevOps: Docker, Kubernetes, AWS EC2, CI/CD pipelines, and real-time WebSocket systems. Currently interning at
+        Deuglo as an ML Intern where I integrate AI-driven features into live products.
+      </p>
+
+      <!-- ── SKILLS ── -->
+      <h2>Skills &amp; Technologies</h2>
+
+      <h3>AI / Machine Learning</h3>
+      <p>PyTorch, TensorFlow, Scikit-learn, XGBoost, LightGBM, Bi-LSTM, Transformers, LLMs, RAG, Prompt Engineering, YOLOv8, LangChain, LangGraph, SHAP, Computer Vision, NLP</p>
+
+      <h3>Full-Stack Development</h3>
+      <p>React.js, Next.js 14, Node.js, FastAPI, WebSockets, REST APIs, Tailwind CSS, TypeScript, JavaScript</p>
+
+      <h3>DevOps &amp; Cloud</h3>
+      <p>Docker, Kubernetes, Jenkins, Git, CI/CD, AWS EC2, Vercel, GitHub Actions, Nginx, Linux</p>
+
+      <h3>Databases</h3>
+      <p>PostgreSQL, MongoDB, Firebase, Redis, Supabase, Neo4j, ChromaDB, MySQL, Pinecone (Vector)</p>
+
+      <h3>Programming Languages</h3>
+      <p>Python, C++, Java, JavaScript, TypeScript</p>
+
+      <h3>Security &amp; Simulation</h3>
+      <p>AES-256-GCM, JWT, RBAC, CSRF Protection, ANSYS, OpenRocket, OpenMotor, CFD Analysis</p>
+
+      <!-- ── PROJECTS ── -->
+      <h2>Projects (15 Total)</h2>
+
+      <article>
+        <h3>01. Multi-Platform Social Media Predictor</h3>
+        <p>Subtitle: LightGBM Engagement Forecasting</p>
+        <p>
+          Production-grade ML system classifying social media posts as HIGH or LOW engagement across five platforms
+          (Facebook, TikTok, Twitter, YouTube). Trained on 800,953 real posts using per-platform binarisation and
+          5-fold stratified cross-validation. Winning LightGBM model achieves F1=0.87 and AUC=0.94 on a 160K
+          held-out test set with full SHAP TreeExplainer explainability.
+        </p>
+        <p>Metrics: F1 Score 0.87 · AUC-ROC 0.94 · Dataset 800K rows</p>
+        <p>Stack: LightGBM, Python, FastAPI, SHAP, Pandas</p>
+        <p>Architecture: 800K Dataset → Feature Engineering → LightGBM Model → SHAP Explainer → FastAPI</p>
+        <p>Live: https://engageiq-sk54.onrender.com/ | GitHub: https://github.com/anshumanvatsa/multi-platform-engagement-predictor</p>
+        <p>Status: Open Source · Year: 2025</p>
+      </article>
+
+      <article>
+        <h3>02. PavePro Vision</h3>
+        <p>Subtitle: YOLOv8 Road Damage Detection &amp; Forecasting</p>
+        <p>
+          AI-driven road maintenance platform. YOLOv8 trained on RDD2022 dataset for 20 epochs achieving mAP@50 of
+          55% (up from 15.6% at epoch 1), Precision 0.608, Recall 0.511 — still trending upward at cutoff. Hybrid
+          XGBoost regressor fuses weather, traffic, and vision-derived severity features for pavement degradation
+          forecasting. React digital twin dashboard with FastAPI backend.
+        </p>
+        <p>Metrics: mAP@50 55% · Precision 0.608 · Dataset RDD2022</p>
+        <p>Stack: YOLOv8, XGBoost, Python, TypeScript, FastAPI, React</p>
+        <p>Architecture: React Digital Twin → FastAPI → YOLOv8 Detection → XGBoost Hybrid Forecaster</p>
+        <p>Live: https://predictive-pavement.vercel.app | GitHub: https://github.com/anshumanvatsa/Road-Pavement-Damage-Prediction</p>
+        <p>Status: Open Source · Year: 2025</p>
+      </article>
+
+      <article>
+        <h3>03. CarePredictAI</h3>
+        <p>Subtitle: Clinical Risk Prediction System</p>
+        <p>
+          Full-stack health risk platform predicting 90-day patient deterioration across 4 clinical conditions using
+          PyTorch LSTM models. FastAPI inference layer with React dashboard. v2 added XGBoost classifiers with
+          SHAP-based risk stratification and a full explainability dashboard for clinicians.
+        </p>
+        <p>Metrics: 4 conditions · 2 models · Live on Vercel</p>
+        <p>Stack: React, FastAPI, PyTorch LSTM, XGBoost, SHAP, Python</p>
+        <p>Architecture: React Dashboard → FastAPI → PyTorch LSTM / XGBoost → PostgreSQL</p>
+        <p>Live: https://care-predict-ai.vercel.app | GitHub: https://github.com/anshumanvatsa/care-predict-ai-v1</p>
+        <p>Status: Live · Year: 2024</p>
+      </article>
+
+      <article>
+        <h3>04. VARUNA</h3>
+        <p>Subtitle: Live Ocean Hazard Reporting Platform</p>
+        <p>
+          Co-built live ocean hazard reporting platform with interactive Leaflet.js map and real-time updates.
+          Personally owned the analytics dashboard and admin panel, implementing Zod schema validation and React
+          Hook Form for type-safe data entry. Supabase real-time database and authentication backend.
+        </p>
+        <p>Metrics: Stack Next.js 14 · DB Supabase · Live Vercel</p>
+        <p>Stack: Next.js 14, Leaflet.js, Supabase, PostgreSQL, Zod, React Hook Form, Tailwind CSS</p>
+        <p>Architecture: Next.js 14 → Leaflet.js Map → Supabase Real-time DB → Admin Panel</p>
+        <p>Live: https://varuna001.vercel.app | GitHub: https://github.com/anshumanvatsa/Varuna</p>
+        <p>Status: Live · Year: 2024</p>
+      </article>
+
+      <article>
+        <h3>05. Bharat Truth Lens</h3>
+        <p>Subtitle: AI-Powered Fake News Detection</p>
+        <p>
+          Full-stack civic technology platform combining AI-powered fake news detection with interactive civic
+          engagement. Users can analyze news articles with AI fact-checking and participate in virtual PM elections
+          with dynamic age-wise voting statistics.
+        </p>
+        <p>Metrics: Stack FastAPI · DB MongoDB · Live Vercel</p>
+        <p>Stack: React, TypeScript, FastAPI, Python, MongoDB</p>
+        <p>Architecture: React UI → FastAPI Backend → AI Fact-Checker → MongoDB</p>
+        <p>Live: https://bharat-truth-lens.vercel.app | GitHub: https://github.com/anshumanvatsa/bharat-truth-lens</p>
+        <p>Status: Live · Year: 2025</p>
+      </article>
+
+      <article>
+        <h3>06. CloudPilot</h3>
+        <p>Subtitle: DevOps Monitoring Dashboard</p>
+        <p>
+          DevOps monitoring dashboard replicating Vercel/Render-style cloud deployment workflows. Real-time
+          infrastructure tracking via WebSockets, JWT authentication, CSRF protection, and one-command Docker
+          deployment. Deployed on AWS EC2.
+        </p>
+        <p>Metrics: Auth JWT · Deploy 1-cmd · Host AWS EC2</p>
+        <p>Stack: TypeScript, Python, Docker, AWS EC2, WebSockets, JWT</p>
+        <p>Architecture: React Dashboard → WebSocket Server → Docker → AWS EC2 → Live Metrics</p>
+        <p>Live: http://cloudpilot.13.60.57.168.sslip.io | GitHub: https://github.com/anshumanvatsa/cloudpilot-devops-platform</p>
+        <p>Status: Live · Year: 2024</p>
+      </article>
+
+      <article>
+        <h3>07. PillSafe-AI</h3>
+        <p>Subtitle: Medicine Safety &amp; Adverse Reaction AI</p>
+        <p>
+          Comprehensive medicine safety checker with a modern React frontend and Flask backend. Uses XGBoost ML
+          models to predict adverse reactions and provide clinical safety insights. Low-latency inference for
+          real-time medication safety checks.
+        </p>
+        <p>Metrics: Model XGBoost · Backend Flask · Type Health AI</p>
+        <p>Stack: React, Flask, XGBoost, Python, TypeScript, Machine Learning, Healthcare AI</p>
+        <p>Architecture: React Frontend → Flask Backend API → XGBoost ML Model → Clinical Insights</p>
+        <p>Live: https://pill-wise-health-main.vercel.app/ | GitHub: https://github.com/anshumanvatsa/PillSafe-AI</p>
+        <p>Status: Live · Year: 2025</p>
+      </article>
+
+      <article>
+        <h3>08. Construction Digital Twin</h3>
+        <p>Subtitle: Real-time IoT Site Monitoring Platform</p>
+        <p>
+          Real-time construction site digital twin simulating worker movement, safety monitoring zones, and risk
+          analytics in an IoT-based environment. FastAPI with WebSocket streams delivering live sensor events to a
+          React frontend. Safety incidents detected in real-time, risk scores updated dynamically across the site map.
+          Demo Login: admin@site.local / admin12345
+        </p>
+        <p>Metrics: Stack TypeScript · Stream WebSocket · Type IoT Twin</p>
+        <p>Stack: React, FastAPI, WebSockets, TypeScript, Python, IoT, Real-time Analytics</p>
+        <p>Architecture: IoT Sensors → FastAPI WebSocket → React Digital Twin Dashboard → Risk Analytics</p>
+        <p>Live: http://13.60.57.168:4006/login | GitHub: https://github.com/anshumanvatsa/construction-digital-twin</p>
+        <p>Status: Live · Year: 2025</p>
+      </article>
+
+      <article>
+        <h3>09. Social Media Predictor (EngageIQ)</h3>
+        <p>Subtitle: Production Engagement Web App</p>
+        <p>
+          Production-ready social media engagement prediction web app — the live constrained version of the
+          Multi-Platform Predictor. Post-publication columns dropped to prevent data leakage, resulting in a
+          real-world F1=0.63. Deployed on Render with a full React frontend.
+        </p>
+        <p>Live: https://engageiq-sk54.onrender.com/ | GitHub: https://github.com/anshumanvatsa/social-media-predictor</p>
+        <p>Status: Live · Year: 2025</p>
+      </article>
+
+      <article>
+        <h3>10. AutoStream AI Agent</h3>
+        <p>Subtitle: Agentic Video Production Pipeline</p>
+        <p>
+          Autonomous AI agent that generates complete YouTube-ready videos end-to-end from a single topic prompt.
+          LangGraph multi-agent orchestration across Script Writer, Scene Planner, and Asset Generator agents.
+          Outputs MP4 with AI voiceover.
+        </p>
+        <p>Stack: LangGraph, LangChain, Python, FFmpeg, ElevenLabs TTS, OpenAI</p>
+        <p>GitHub: https://github.com/anshumanvatsa/AutoStream-AI-Agent</p>
+        <p>Status: Open Source · Year: 2025</p>
+      </article>
+
+      <article>
+        <h3>11. Heart Disease Predictor</h3>
+        <p>Subtitle: Ensemble ML Clinical Classifier</p>
+        <p>
+          Ensemble ML classifier for heart disease prediction comparing Logistic Regression, Random Forest, and
+          XGBoost. Full data preprocessing pipeline with SHAP explainability and a Flask API for clinical
+          deployment.
+        </p>
+        <p>Stack: Python, Scikit-learn, XGBoost, Flask, SHAP</p>
+        <p>GitHub: https://github.com/anshumanvatsa/Heart-Disease-Predictor</p>
+        <p>Status: Research · Year: 2024</p>
+      </article>
+
+      <article>
+        <h3>12. DocuMind RAG</h3>
+        <p>Subtitle: LLM Document Intelligence System</p>
+        <p>
+          RAG (Retrieval Augmented Generation) document intelligence system. Users upload PDFs and query them
+          with natural language. ChromaDB vector store for semantic retrieval, LangChain orchestration,
+          and a FastAPI backend.
+        </p>
+        <p>Stack: Python, LangChain, ChromaDB, FastAPI, OpenAI</p>
+        <p>GitHub: https://github.com/anshumanvatsa/Documind---rag</p>
+        <p>Status: Open Source · Year: 2024</p>
+      </article>
+
+      <article>
+        <h3>13. Selective Encryption System</h3>
+        <p>Subtitle: AES-256-GCM File Security Tool</p>
+        <p>
+          File encryption tool using AES-256-GCM for selective field-level encryption. Supports batch processing,
+          key management, and a CLI interface. Built with security-first design principles.
+        </p>
+        <p>Stack: Python, AES-256-GCM, Cryptography</p>
+        <p>GitHub: https://github.com/anshumanvatsa/Selective-Encryption</p>
+        <p>Status: Open Source · Year: 2024</p>
+      </article>
+
+      <article>
+        <h3>14. DrugSafe AI (Medicine Safety Predictor)</h3>
+        <p>Subtitle: Medicine Safety Predictor</p>
+        <p>
+          Replaced a legacy Streamlit interface with a production-grade full-stack architecture. Flask REST API
+          backend with a React frontend for batch CSV upload of patient and drug data to receive instant safety
+          predictions and risk assessments.
+        </p>
+        <p>Stack: React, Flask, Python, Machine Learning, XGBoost</p>
+        <p>GitHub: https://github.com/anshumanvatsa/Medicine_safety_checker</p>
+        <p>Status: Open Source · Year: 2024</p>
+      </article>
+
+      <article>
+        <h3>15. Artful Heaven</h3>
+        <p>Subtitle: Digital Art E-Commerce Platform</p>
+        <p>
+          Premium UI/UX-heavy digital art e-commerce platform with smooth Framer Motion animations, artist
+          profiles, cart, and order management. Deployed on AWS EC2.
+        </p>
+        <p>Stack: React, Node.js, MongoDB, AWS EC2, Framer Motion</p>
+        <p>Live: http://13.60.57.168:4008 | GitHub: https://github.com/anshumanvatsa/artful-heaven</p>
+        <p>Status: Live · Year: 2024</p>
+      </article>
+
+      <!-- ── EXPERIENCE ── -->
+      <h2>Experience &amp; Education</h2>
+
+      <article>
+        <h3>ML Intern — Deuglo (Jan 2025 – Present)</h3>
+        <p>Building and integrating AI-driven product features into live applications. Responsible for model training, evaluation, and deployment within the product pipeline.</p>
+      </article>
+
+      <article>
+        <h3>Propulsion Team Member — Aerospace Club, VIT Chennai (Aug 2024 – Present)</h3>
+        <p>Contributed to propulsion system design for high-powered rocketry projects. Used OpenRocket/OpenMotor for motor design, trajectory, and thrust optimization.</p>
+      </article>
+
+      <article>
+        <h3>General Secretary — Collegiate Cultural Club, VIT Chennai (Jun 2025 – Jun 2026)</h3>
+        <p>Planned and executed 15+ large-scale student events end-to-end. Managed cross-functional teams, budgets, and sponsorship coordination.</p>
+      </article>
+
+      <article>
+        <h3>B.Tech Computer Science &amp; Engineering — VIT Chennai (Jul 2023 – Present)</h3>
+        <p>CGPA: 8.83 / 10. Core coursework: Data Structures &amp; Algorithms, Operating Systems, DBMS, Computer Networks, OOP. Additional focus on AI/ML through personal projects and certifications.</p>
+      </article>
+
+      <!-- ── CERTIFICATIONS ── -->
+      <h2>Certifications</h2>
       <ul>
-        <li><strong>Artful Heaven</strong>: A premium, UI/UX-heavy digital art and e-commerce platform built with React and Framer Motion. Live: http://13.60.57.168:4008</li>
-        <li><strong>PavePro Vision</strong>: AI-driven road maintenance platform using YOLOv8 (mAP 55%) on RDD2022 dataset and a hybrid XGBoost regressor fusing weather, traffic, and vision features for pavement degradation forecasting. Live: https://predictive-pavement.vercel.app</li>
-        <li><strong>Varuna</strong>: Multilingual legal intelligence engine. Live: https://varuna-five.vercel.app</li>
-        <li><strong>Multi-Platform Content Generator</strong>: Automates video creation pipeline using LLMs. Live: https://multi-platform-content-generator.vercel.app</li>
-        <li><strong>Disease Prediction System</strong>: Random Forest API predicting 41 diseases with 99.2% accuracy.</li>
+        <li>IBM DevOps Fundamentals — IBM, 2025</li>
+        <li>IBM Agile &amp; Design Thinking — IBM, 2025</li>
+        <li>IBM DevOps Training — IBM, 2025</li>
+        <li>Machine Learning I — Columbia+, 2025</li>
       </ul>
 
-      <h2>Contact & Links</h2>
+      <!-- ── ACHIEVEMENTS ── -->
+      <h2>Achievements</h2>
+      <ul>
+        <li>IBM DevOps Certified — Completed IBM DevOps Fundamentals, Agile &amp; Design Thinking, and DevOps Training certifications (2025)</li>
+        <li>CGPA 8.83 / 10 — Consistent academic performance at VIT Chennai in Computer Science &amp; Engineering</li>
+        <li>10+ Live Deployments — Successfully built, containerized, and deployed 10+ production-ready applications across Vercel, Render, and AWS</li>
+        <li>General Secretary — Led and executed 15+ large-scale student events as General Secretary of the Collegiate Cultural Club (Jun 2025 – Jun 2026)</li>
+      </ul>
+
+      <!-- ── CONTACT ── -->
+      <h2>Contact &amp; Links</h2>
+      <p>Portfolio: https://anshumanvatsa-portfolio.vercel.app</p>
       <p>GitHub: https://github.com/anshumanvatsa</p>
       <p>LinkedIn: https://linkedin.com/in/anshumanvatsa</p>
       <p>Email: atulvatsamishra@gmail.com</p>
