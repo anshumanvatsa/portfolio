@@ -12,7 +12,7 @@ const RESUME = {
   name: 'ANSHUMAN',
   title: 'Machine Learning Engineer & Full-Stack Developer',
   location: 'Chennai, India',
-  email: 'atulvatsamishra@gmail.com',
+  email: 'anshumanvatsamishra@gmail.com',
   phone: '+919508601270',
   github: 'github.com/anshumanvatsa',
   linkedin: 'linkedin.com/in/anshuman-vatsa-mishra',

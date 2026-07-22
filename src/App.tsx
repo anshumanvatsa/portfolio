@@ -307,8 +307,8 @@ export default function App() {
                 <ExternalLink className="w-3.5 h-3.5" /> linkedin.com/in/anshuman-vatsa-mishra
               </a>
               <span>·</span>
-              <a href="mailto:atulvatsamishra@gmail.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                <Mail className="w-3.5 h-3.5" /> atulvatsamishra@gmail.com
+              <a href="mailto:anshumanvatsamishra@gmail.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <Mail className="w-3.5 h-3.5" /> anshumanvatsamishra@gmail.com
               </a>
               <span>·</span>
               <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> Chennai, IN</span>
@@ -621,14 +621,14 @@ export default function App() {
                   Open to full-time roles, internships, and research collaborations at the intersection of machine learning and high-scale infrastructure.
                 </p>
                 <div className="flex flex-col gap-4 mb-8">
-                  <a href="mailto:atulvatsamishra@gmail.com"
+                  <a href="mailto:anshumanvatsamishra@gmail.com"
                     className="flex items-center gap-3 group text-sm font-sans hover:text-primary transition-colors">
                     <div className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                       <Mail className="w-4 h-4 text-secondary group-hover:text-primary transition-colors" />
                     </div>
                     <div>
                       <p className="text-[10px] font-mono text-secondary uppercase tracking-wider">Email</p>
-                      <p className="font-mono text-xs text-on-surface">atulvatsamishra@gmail.com</p>
+                      <p className="font-mono text-xs text-on-surface">anshumanvatsamishra@gmail.com</p>
                     </div>
                   </a>
                   <div className="flex items-center gap-3 text-sm font-sans">
@@ -754,7 +754,7 @@ export default function App() {
             <a href="https://github.com/anshumanvatsa" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">
               <Github className="w-3.5 h-3.5" /> GitHub
             </a>
-            <a href="mailto:atulvatsamishra@gmail.com" className="hover:text-white transition-colors flex items-center gap-1.5">
+            <a href="mailto:anshumanvatsamishra@gmail.com" className="hover:text-white transition-colors flex items-center gap-1.5">
               <Mail className="w-3.5 h-3.5" /> Email
             </a>
           </div>
