@@ -288,7 +288,7 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'FastAPI', 'WebSockets'],
     fullTags: ['React', 'FastAPI', 'WebSockets', 'TypeScript', 'Python', 'IoT', 'Real-time Analytics'],
     description:
-      'A real-time construction site digital twin that simulates worker movement, safety monitoring zones, and risk analytics in an IoT-based environment. FastAPI powers the backend with WebSocket streams delivering live sensor events to a React frontend dashboard. Safety incidents are detected in real-time and risk scores are updated dynamically across the site map.\n\n**Live Demo Access**:\nEmail: `admin@site.local`\nPassword: `admin12345`',
+      'A real-time construction site digital twin that simulates worker movement, safety monitoring zones, and risk analytics in an IoT-based environment. FastAPI powers the backend with WebSocket streams delivering live sensor events to a React frontend dashboard. Safety incidents are detected in real-time and risk scores are updated dynamically across the site map.',
     challenges: [
       'Streaming live IoT sensor events at high frequency via WebSockets without performance degradation.',
       'Building a spatial site map UI that updates worker positions and safety zones in real-time.',
