@@ -284,7 +284,7 @@ export const PROJECTS: Project[] = [
     id: 'construction',    title: 'Construction Digital Twin',
     subtitle: 'Real-time IoT Site Monitoring Platform',
     shortDesc:
-      'Real-time construction site digital twin using FastAPI, WebSockets, and React to simulate worker movement, safety monitoring, and risk analytics in an IoT-based environment. (Demo Login: admin@site.local / admin12345)',
+      'Real-time construction site digital twin using FastAPI, WebSockets, and React to simulate worker movement, safety monitoring, and risk analytics in an IoT-based environment.',
     tags: ['React', 'FastAPI', 'WebSockets'],
     fullTags: ['React', 'FastAPI', 'WebSockets', 'TypeScript', 'Python', 'IoT', 'Real-time Analytics'],
     description:
@@ -300,7 +300,7 @@ export const PROJECTS: Project[] = [
       'Dynamic risk analytics and alerting system for site safety events.',
     ],
     architecture: 'IoT Sensors → FastAPI WebSocket → React Digital Twin Dashboard → Risk Analytics',
-    liveUrl: 'http://13.60.57.168:4006/login',
+    liveUrl: 'http://13.60.57.168:4009',
     githubUrl: 'https://github.com/anshumanvatsa/construction-digital-twin',
     previewImage: '/construction-preview.png',
     category: 'fullstack',
