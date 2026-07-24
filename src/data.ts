@@ -57,7 +57,8 @@ export interface Achievement {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'multi-platform-engagement',    title: 'Multi-Platform Social Media Predictor',
+    id: 'multi-platform-engagement',
+    title: 'Multi-Platform Social Media Predictor',
     subtitle: 'LightGBM Engagement Forecasting',
     shortDesc:
       'Production-grade ML system classifying social media posts across five platforms. Trained on 800K+ real posts with full SHAP explainability.',
@@ -89,7 +90,8 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'roadpavement',    title: 'PavePro Vision',
+    id: 'roadpavement',
+    title: 'PavePro Vision',
     subtitle: 'YOLOv8 Road Damage Detection & Forecasting',
     shortDesc:
       'YOLOv8 trained on RDD2022 dataset (mAP@50: 55%, Precision: 0.608, 20 epochs). Hybrid XGBoost model fusing weather + traffic + vision features for pavement degradation forecasting. React digital twin dashboard.',
@@ -121,7 +123,8 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'carepredict',    title: 'CarePredictAI',
+    id: 'carepredict',
+    title: 'CarePredictAI',
     subtitle: 'Clinical Risk Prediction System',
     shortDesc:
       'Full-stack health risk platform predicting 90-day patient deterioration across 4 conditions. v2 added XGBoost classifiers with risk stratification and explainability dashboard.',
@@ -153,7 +156,8 @@ export const PROJECTS: Project[] = [
     status: 'live',
   },
   {
-    id: 'varuna',    title: 'VARUNA',
+    id: 'varuna',
+    title: 'VARUNA',
     subtitle: 'Live Ocean Hazard Reporting Platform',
     shortDesc:
       'Co-built live ocean hazard reporting platform with interactive Leaflet.js map. Owned the analytics dashboard and admin panel with Zod + React Hook Form validation.',
@@ -185,7 +189,8 @@ export const PROJECTS: Project[] = [
     status: 'live',
   },
   {
-    id: 'bharat-truth-lens',    title: 'Bharat Truth Lens',
+    id: 'bharat-truth-lens',
+    title: 'Bharat Truth Lens',
     subtitle: 'AI-Powered Fake News Detection',
     shortDesc:
       'A full-stack platform combining AI fact-checking with real civic engagement, featuring virtual elections and age-wise voting statistics.',
@@ -217,7 +222,8 @@ export const PROJECTS: Project[] = [
     status: 'live',
   },
   {
-    id: 'cloudpilot',    title: 'CloudPilot',
+    id: 'cloudpilot',
+    title: 'CloudPilot',
     subtitle: 'DevOps Monitoring Dashboard',
     shortDesc:
       'DevOps monitoring dashboard replicating Vercel/Render functionality — JWT auth, CSRF protection, real-time infrastructure tracking, one-command Docker deployment.',
@@ -249,7 +255,8 @@ export const PROJECTS: Project[] = [
     status: 'live',
   },
   {
-    id: 'pillsafe-ai',    title: 'PillSafe-AI',
+    id: 'pillsafe-ai',
+    title: 'PillSafe-AI',
     subtitle: 'Medicine Safety & Adverse Reaction AI',
     shortDesc:
       'A comprehensive medicine safety checker with a modern React frontend and a robust Flask backend. Uses XGBoost ML models to predict adverse reactions and provide clinical safety insights.',
@@ -281,7 +288,8 @@ export const PROJECTS: Project[] = [
     status: 'live',
   },
   {
-    id: 'construction',    title: 'Construction Digital Twin',
+    id: 'construction',
+    title: 'Construction Digital Twin',
     subtitle: 'Real-time IoT Site Monitoring Platform',
     shortDesc:
       'Real-time construction site digital twin using FastAPI, WebSockets, and React to simulate worker movement, safety monitoring, and risk analytics in an IoT-based environment.',
@@ -313,7 +321,8 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'social-media-pre',    title: 'Social Media Predictor',
+    id: 'social-media-pre',
+    title: 'Social Media Predictor',
     subtitle: 'Pre-Publication Engagement Analytics',
     shortDesc:
       'Engagement predictor for social media posts trained on 800K+ real posts, explaining predictions in plain English using SHAP.',
@@ -345,7 +354,8 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'autostream',    title: 'AutoStream AI Agent',
+    id: 'autostream',
+    title: 'AutoStream AI Agent',
     subtitle: 'Conversational Lead-Gen AI Agent',
     shortDesc:
       'Full-stack conversational AI agent converting user chats into qualified leads using intent detection, RAG-based knowledge retrieval, and controlled lead capture workflows.',
@@ -377,7 +387,8 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'heartdisease',    title: 'Heart Disease Predictor',
+    id: 'heartdisease',
+    title: 'Heart Disease Predictor',
     subtitle: 'Multi-Model ML Classification Pipeline',
     shortDesc:
       'ML pipeline comparing Logistic Regression, Random Forest, XGBoost & MLP for heart disease prediction using the UCI Cleveland dataset, with SHAP explainability.',
@@ -409,7 +420,8 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'documind',    title: 'DocuMind RAG',
+    id: 'documind',
+    title: 'DocuMind RAG',
     subtitle: 'Document Q&A Chatbot with RAG',
     shortDesc:
       'RAG-based document intelligence chatbot — upload PDFs and get context-aware AI answers using LangChain, vector stores, and LLM integration.',
@@ -441,39 +453,41 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'selective-encryption',    title: 'Selective Encryption System',
-    subtitle: 'AES-256-GCM Security Platform',
+    id: 'vaultview-deception',
+    title: 'VaultView - Adaptive Deception System',
+    subtitle: 'Behavior-Driven Cybersecurity Platform',
     shortDesc:
-      'Production-ready selective encryption system with AES-256-GCM, JWT authentication, RBAC, file encryption, audit logging, and full-stack architecture — FastAPI + React, Docker, CI/CD.',
-    tags: ['AES-256-GCM', 'FastAPI', 'React'],
-    fullTags: ['AES-256-GCM', 'JWT', 'RBAC', 'FastAPI', 'React', 'Docker', 'CI/CD', 'Python', 'Audit Logging'],
+      'A cyber-deception system that serves real or AI-generated decoy data based on real-time trust scoring using multi-signal behavioral analysis.',
+    tags: ['Deception', 'Flask', 'React'],
+    fullTags: ['Adaptive Deception', 'Flask', 'React', 'Behavioral Analysis', 'Honeytokens', 'Python'],
     description:
-      'A production-ready selective encryption system implementing AES-256-GCM authenticated encryption, JWT-based authentication, role-based access control (RBAC), file-level encryption, and comprehensive audit logging. The full-stack architecture uses FastAPI for the secure backend and React for the management UI, containerized with Docker and deployed via a CI/CD pipeline with observability tooling.',
+      'A behavior-driven cybersecurity platform designed to protect sensitive data through Adaptive Deception. Instead of relying solely on binary access control (allow/deny), VaultView continuously scores a user\'s behavior in real-time. Depending on the user\'s "Trust Score", the system dynamically alters the reality they see: serving real data to trusted users, deploying tarpits and honeytokens to suspicious users, and feeding entirely fake/decoy data to hostile attackers.',
     challenges: [
-      'Implementing AES-256-GCM correctly with authenticated encryption and proper IV/nonce management.',
-      'Designing a RBAC system that enforces granular file-access permissions across user roles.',
-      'Building a tamper-evident audit log that records all encryption/decryption operations.',
+      'Designing a real-time behavioral trust engine that accurately scores user intent.',
+      'Implementing seamless on-the-fly generation of decoy data that appears indistinguishable from real data.',
+      'Developing an effective 3-tier deception model (Trusted, Suspicious, Hostile) to mitigate attacks without impacting real users.',
     ],
     achievements: [
-      'AES-256-GCM authenticated encryption with JWT + RBAC access control.',
-      'File encryption engine with comprehensive audit logging.',
-      'Dockerized full-stack deployment with CI/CD pipeline and observability.',
+      'Real-time behavioral trust engine with 5 distinct signals.',
+      'Dynamic 3-tier deception response mechanism including tarpitting and honeytokens.',
+      'Comprehensive audit logging for hostile actors.',
     ],
-    architecture: 'React UI → FastAPI → AES-256-GCM Engine → RBAC → Audit Log → Docker',
-    liveUrl: 'https://github.com/anshumanvatsa/Selective-Encryption',
-    githubUrl: 'https://github.com/anshumanvatsa/Selective-Encryption',
-    previewImage: '/encryption-preview.png',
+    architecture: 'React UI → Flask API → Trust Engine → Adaptive Deception Logic → DB',
+    liveUrl: 'https://vaultview-deception.vercel.app',
+    githubUrl: 'https://github.com/anshumanvatsa/adaptive-deception-system',
+    previewImage: '/vaultview-preview.jpg',
     category: 'fullstack',
     metrics: [
-      { label: 'Cipher', value: 'AES-256' },
-      { label: 'Auth', value: 'JWT+RBAC' },
-      { label: 'Type', value: 'Security' },
+      { label: 'Deception', value: '3-Tier' },
+      { label: 'Security', value: 'Behavioral' },
+      { label: 'Type', value: 'Cybersecurity' },
     ],
-    year: '2025',
+    year: '2026',
     status: 'open-source',
   },
   {
-    id: 'medicine-safety',    title: 'DrugSafe AI',
+    id: 'medicine-safety',
+    title: 'DrugSafe AI',
     subtitle: 'Medicine Safety Predictor',
     shortDesc:
       'A complete drug safety prediction system with a Flask backend API and React frontend for batch CSV predictions.',
@@ -505,7 +519,8 @@ export const PROJECTS: Project[] = [
     status: 'open-source',
   },
   {
-    id: 'artful-heaven',    title: 'Artful Heaven',
+    id: 'artful-heaven',
+    title: 'Artful Heaven',
     subtitle: 'Premium E-Commerce Art Platform',
     shortDesc: 'A highly aesthetic, UI/UX-heavy digital art and e-commerce platform featuring glassmorphism, fluid animations, and premium dark-mode styling.',
     tags: ['React', 'UI/UX', 'Tailwind'],
